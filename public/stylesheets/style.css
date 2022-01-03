@@ -7,13 +7,3 @@ a {
     margin: 3px;
     padding: 3px;
 }
-
-#googleLink {
-    box-shadow: inset 2px 2px 12px currentColor;
-    transition: all 0.3s;
-}
-
-#googleLink:hover {
-    box-shadow: inset 0px 0px 0px currentColor;
-    border-bottom: 2px solid currentColor;
-}
