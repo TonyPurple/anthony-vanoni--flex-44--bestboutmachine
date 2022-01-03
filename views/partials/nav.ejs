@@ -1,19 +1,43 @@
-<% if (!user) { %>
-    <link rel="stylesheet" href="/stylesheets/siwg.css">
-    <% } %>
-        </head>
+</head>
 
-        <body>
-            <nav>
-                <% if (user) { %>
-                    <a href="/auth/logout">
-                        <button type="submit">Logout</button>
-                    </a>
-                    <% } else { %>
-                        <a href="/auth/google" class="siwg-link">
-                            <button type="submit" class="siwg">
-          <img id="siwg-image" alt="Sign in with Google" />
-        </button>
-                        </a>
-                        <% } %>
+<body>
+    <section class="section">
+        <div class="container">
+            <nav class="navbar" role="navigation" aria-label="main navigation">
+                <div class="navbar-brand has-shadow">
+                    <div class="navbar-start">
+                        <a class="navbar-item button .is-black is-outlined is-rounded" href="/">Best Bout Machine</a>
+                        <a class="navbar-item button is-light is-inverted is-rounded" href="/matches">Recent Events</a>
+                        <a class="navbar-item button is-light is-inverted is-rounded" href="/matches/new">ADD Event</a>
+                        <a class="navbar-item button is-light is-inverted is-rounded" href="/wrestlers/new">ADD Wrestler</a>
+                    </div>
+                    <div class="navbar-end">
+                        <div class="navbar-item">
+                            <strong>hello,
+                                <%= user ? user.profile.name : "mark" %></strong>
+                            <% if (user?.profile.avatar) { %>
+                                <div class="navbar-item">
+                                    <img src="<%= user.profile.avatar %>" alt="<%= user.profile.name %> avatar">
+                                </div>
+                                <% } %>
+                                    <% if (user) { %>
+                                        <a href="/auth/logout">
+                                            <button type="submit">Logout</button>
+                                        </a>
+                                        <% } else { %>
+                                            <div class="navbar-item">
+                                                <img src="https://i.imgur.com/tNbIrh8.jpg">
+                                                <a href="/auth/google" class="siwg-link">
+                                                    <button type="submit" class="siwg">
+                        Sign In With Google</button>
+                                                </a>
+                                            </div>
+                                            <% } %>
+                        </div>
+                    </div>
+                </div>
             </nav>
+            <img id="index-img" src="https://i.imgur.com/spGV9et.jpg" alt="Pro Wrestling Bout">
+            <h1 class="title">
+                <%= title %>
+            </h1>

@@ -1,14 +1,21 @@
 <%- include('./partials/html-head') %>
     <%- include('./partials/nav') %>
+        <p class="subtitle">This website is made for everyone who casts their annual vote for pro wrestling's match of the year, can't remember all the matches they watched, and just chooses something from Wrestle Kingdom. You know how it goes.</p>
+        <br>
+        <h2 class="title is-4">Recent Events</h2>
+        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+            <thead>
+                <tr>
+                    <th>Promotion</th>
+                    <th>Event</th>
+                    <th>Date</th>
+                    <th>Card Details</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
 
-        <main>
-            <h1>hello,
-                <%= user ? user.profile.name : "mark" %>
-            </h1>
-            <% if (user?.profile.avatar) { %>
-                <div>
-                    <img src="<%= user.profile.avatar %>" alt="<%= user.profile.name %> avatar">
-                </div>
-                <% } %>
-        </main>
+        <br>
         <%- include('./partials/footer') %>
