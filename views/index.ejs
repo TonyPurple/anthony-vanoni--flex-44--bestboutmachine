@@ -2,20 +2,24 @@
     <%- include('./partials/nav') %>
         <p class="subtitle">This website is made for everyone who casts their annual vote for pro wrestling's match of the year, can't remember all the matches they watched, and just chooses something from Wrestle Kingdom. You know how it goes.</p>
         <br>
-        <h2 class="title is-4">Recent Events</h2>
-        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
-            <thead>
-                <tr>
-                    <th>Promotion</th>
-                    <th>Event</th>
-                    <th>Date</th>
-                    <th>Card Details</th>
-                    <th>Delete</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
+        <% if (!user) { %>
+            <h1 class="title is-4">Log in to see recent results</h1>
+            <% } else { %>
 
-        <br>
-        <%- include('./partials/footer') %>
+                <h2 class="title is-4">Recent Events</h2>
+                <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+                    <thead>
+                        <tr>
+                            <th>Promotion</th>
+                            <th>Event</th>
+                            <th>Date</th>
+                            <th>Card Details</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <% } %>
+                    <br>
+                    <%- include('./partials/footer') %>

@@ -4,7 +4,7 @@
     <section class="section">
         <div class="container">
             <nav class="navbar" role="navigation" aria-label="main navigation">
-                <div class="navbar-brand has-shadow">
+                <div class="navbar-brand">
                     <div class="navbar-start">
                         <a class="navbar-item button .is-black is-outlined is-rounded" href="/">Best Bout Machine</a>
                         <a class="navbar-item button is-light is-inverted is-rounded" href="/matches">Recent Events</a>
@@ -14,7 +14,7 @@
                     <div class="navbar-end">
                         <div class="navbar-item">
                             <strong>hello,
-                                <%= user ? user.profile.name : "mark" %></strong>
+                            <%= user ? user.profile.name : "mark" %></strong>
                             <% if (user?.profile.avatar) { %>
                                 <div class="navbar-item">
                                     <img src="<%= user.profile.avatar %>" alt="<%= user.profile.name %> avatar">
@@ -22,13 +22,13 @@
                                 <% } %>
                                     <% if (user) { %>
                                         <a href="/auth/logout">
-                                            <button type="submit">Logout</button>
+                                            <button type="submit" class="navbar-item button is-light is-inverted is-rounded">Logout</button>
                                         </a>
                                         <% } else { %>
                                             <div class="navbar-item">
                                                 <img src="https://i.imgur.com/tNbIrh8.jpg">
-                                                <a href="/auth/google" class="siwg-link">
-                                                    <button type="submit" class="siwg">
+                                                <a href="/auth/google">
+                                                    <button type="submit" class="navbar-item button is-light is-inverted is-rounded">
                         Sign In With Google</button>
                                                 </a>
                                             </div>
