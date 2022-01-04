@@ -1,24 +1,16 @@
 <%- include('./partials/html-head') %>
     <%- include('./partials/nav') %>
+        <img id="index-img" src="https://i.imgur.com/spGV9et.jpg" alt="Pro Wrestling Bout">
         <p class="subtitle">This website is made for everyone who casts their annual vote for pro wrestling's match of the year, can't remember all the matches they watched, and just chooses something from Wrestle Kingdom. You know how it goes.</p>
         <br>
         <% if (!user) { %>
-            <h1 class="title is-4">Log in to see recent results</h1>
+            <h1 class="title is-4">Log in to see recent nominations</h1>
             <% } else { %>
-                <h2 class="title is-4">Recent Events</h2>
-                <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
-                    <thead>
-                        <tr>
-                            <th>Promotion</th>
-                            <th>Event</th>
-                            <th>Date</th>
-                            <th>Card Details</th>
-                            <th>Delete</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
+                <h2 class="title is-4">Recent Nominations</h2>
+                <p>
+                    See match of the year candidates from around the world as chosen by you, the fans of pro wrestling.
+                </p>
+                <a href="/matches" class="link">Recent Nominations</a>
                 <% } %>
                     <br>
                     <%- include('./partials/footer') %>

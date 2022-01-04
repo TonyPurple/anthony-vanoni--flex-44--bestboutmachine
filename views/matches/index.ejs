@@ -1,0 +1,44 @@
+<%- include('./../partials/html-head') %>
+    <%- include('./../partials/nav') %>
+
+        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+            <thead>
+                <tr>
+                    <th>Promotion</th>
+                    <th>Event</th>
+                    <th>Date</th>
+                    <th>Wrestlers</th>
+                    <th>Match Details</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% matches.forEach(function(match) { %>
+                    <tr>
+                        <td>
+                            <%= match.promotion %>
+                        </td>
+                        <td>
+                            <%= match.event %>
+                        </td>
+                        <td>
+                            <%- `${match.date.toLocaleDateString()}` %>
+                        </td>
+                        <td>
+                            <%= match.wrestlers %>
+                        </td>
+                        <td><a class="button is-info is-small is-link" href="/matches/<%= match._id %>">DETAILS</a>
+                        </td>
+                        <td>
+                            <form action="/matches/<%= match.id %>?_method=DELETE" method="POST">
+                                <button class="delete is-large"></button>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    <% }); %>
+            </tbody>
+        </table>
+
+        <br>
+        <%- include('../partials/footer') %>

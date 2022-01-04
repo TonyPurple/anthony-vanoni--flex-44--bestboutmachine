@@ -1,0 +1,90 @@
+<%- include('./../partials/html-head') %>
+    <%- include('./../partials/nav') %>
+        <div class="content is-medium">
+            <dl>
+                <dt>Promotion: </dt>
+                <dd>
+                    <%= match.promotion %>
+                </dd>
+                <dt>Event: </dt>
+                <dd>
+                    <%= match.event %>
+                </dd>
+                <dt>Date: </dt>
+                <dd>
+                    <%= match.date.toLocaleDateString() %>
+                </dd>
+                <dt>Wrestlers: </dt>
+                <dd>
+                    <%= match.wrestlers %>
+                </dd>
+                <dt>Match Type: </dt>
+                <dd>
+                    <%= match.matchType %>
+                </dd>
+                <dt>Result: </dt>
+                <dd>
+                    <%= match.result %>
+                </dd>
+            </dl>
+
+            <h2 class="title">Reviews</h2>
+            <form class="field" method="POST" action="/matches/<%= match._id %>/reviews">
+                <label>Review:</label>
+                <textarea name="content"></textarea>
+                <label>Rating:</label>
+                <select class="select" name="rating">
+    <option value="0">0</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+  </select>
+                <input class="button is-link is-link" type="submit" value="Add Review">
+            </form>
+
+            <% if (match.reviews.length) { %>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Review</th>
+                            <th>Rating</th>
+                            <th>Reviewer</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% let total = 0 %>
+                            <% match.reviews.forEach(function(review) { %>
+                                <% total += review.rating %>
+                                    <tr>
+                                        <td>
+                                            <%= review.createdAt.toLocaleDateString() %>
+                                        </td>
+                                        <td>
+                                            <%= review.content %>
+                                        </td>
+                                        <td>
+                                            <%= review.rating %>
+                                        </td>
+                                        <td>
+                                            <%= review.reviewer %>
+                                        </td>
+                                    </tr>
+                                    <% }); %>
+                                        <tr>
+                                            <td colspan="2"></td>
+                                            <td><strong><%= (total / match.reviews.length).toFixed(1) %></strong></td>
+                                        </tr>
+                    </tbody>
+                </table>
+                <% } else { %>
+                    <p>No Reviews Yet</p>
+                    <% } %>
+                        <br>
+        </div>
+
+        <%- include('../partials/footer') %>

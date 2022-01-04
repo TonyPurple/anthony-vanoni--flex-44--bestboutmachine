@@ -1,0 +1,20 @@
+<%- include('./../partials/html-head') %>
+    <%- include('./../partials/nav') %>
+        <form class="field" action="/matches" method="POST">
+            <label>Promotion:</label>
+            <input class="input" type="text" name="promotion">
+            <label>Event Name</label>
+            <input class="input" type="text" name="event">
+            <label>Date</label>
+            <input class="input" type="datetime-local" name="date">
+            <label>Wrestlers</label>
+            <input class="input" type="textarea" name="wrestlers">
+            <label>Match Type</label>
+            <input class="input" type="text" name="matchType">
+            <label>Result</label>
+            <input class="input" type="text" name="result">
+            <input class="button is-link is-outlined" type="submit" value="Nominate Match">
+        </form>
+        <br>
+        <br>
+        <%- include('../partials/footer') %>
