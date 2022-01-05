@@ -6,10 +6,16 @@ function index(req, res) {
     }).sort({ date: 'ascending' })
 }
 
-function show(req, res, match) {
-    Match.findById(req.params.id, function(err, match) {
-        res.render('matches/show', { title: 'Match Details', match });
-    })
+function show(req, res) {
+    Match.findById(req.params.id)
+        .populate({
+            path: 'reviews',
+            populate: {
+                path: 'reviewer'
+            }
+        }).then(match => {
+            res.render('matches/show', { title: 'Match Details', match });
+        })
 };
 
 function newMatch(req, res) {

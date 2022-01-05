@@ -1,12 +1,12 @@
 const Profile = require('../models/profile');
 
 function index(req, res) {
-    Profile.find({})
-        .then(profiles => {
-            console.log(profiles)
+    Profile.findById(req.params.profileId)
+        .then(profile => {
+            console.log(profile)
             res.render('profiles/index', {
                 title: 'User Profile',
-                profiles,
+                profile,
                 user: req.user ? req.user : null
             })
         })
