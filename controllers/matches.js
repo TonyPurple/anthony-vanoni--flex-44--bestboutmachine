@@ -24,6 +24,8 @@ function newMatch(req, res) {
 
 function create(req, res) {
     const match = new Match(req.body)
+        //set creator = user
+    req.body.nominatedBy = req.user.profile._id
     match.save(function(err) {
         // one way to handle errors
         if (err) return res.redirect('/matches/new');

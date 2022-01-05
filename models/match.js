@@ -5,6 +5,7 @@ const reviewSchema = new Schema({
     content: String,
     rating: { type: Number, min: 0, max: 7 },
     reviewer: [{ type: Schema.Types.ObjectId, ref: "Profile" }],
+    userName: String
 }, {
     timestamps: true
 });
@@ -28,7 +29,8 @@ const matchSchema = new mongoose.Schema({
     result: {
         type: String,
     },
-    reviews: [reviewSchema]
+    reviews: [reviewSchema],
+    nominatedBy: { type: Schema.Types.ObjectId, ref: "Profile" }
 }, {
     timestamps: true
 })

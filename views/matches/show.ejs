@@ -54,6 +54,7 @@
                             <th>Review</th>
                             <th>Rating</th>
                             <th>Reviewer</th>
+                            <td>Edit</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -71,7 +72,12 @@
                                             <%= review.rating %>
                                         </td>
                                         <td>
-                                            <%= review.reviewer %>
+                                            <%= review.userName %>
+                                        </td>
+                                        <td>
+                                            <br>
+                                            <a href="/<%= review.id %>/edit">Edit Review</a>
+                                            <br>
                                         </td>
                                     </tr>
                                     <% }); %>
