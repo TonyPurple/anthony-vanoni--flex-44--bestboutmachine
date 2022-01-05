@@ -14,6 +14,7 @@ var authRouter = require('./routes/auth');
 var matchesRouter = require('./routes/matches');
 var reviewsRouter = require('./routes/reviews');
 var promotionsRouter = require('./routes/promotions')
+var profilesRouter = require('./routes/profiles')
 
 var app = express();
 
@@ -44,6 +45,7 @@ app.use('/auth', authRouter);
 app.use('/matches', matchesRouter);
 app.use('/', reviewsRouter)
 app.use('/', promotionsRouter)
+app.use('/profiles', profilesRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,5 +1,4 @@
 const Promotion = require('../models/promotion');
-const Match = require('../models/match');
 
 module.exports = {
     new: newPromotion,

@@ -1,5 +1,4 @@
-const express = require('express');
-const router = express.Router();
+var router = require('express').Router();
 const promotionsCtrl = require('../controllers/promotions');
 
 router.get('/promotions/new', promotionsCtrl.new);
