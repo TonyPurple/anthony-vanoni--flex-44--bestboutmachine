@@ -9,34 +9,45 @@
                     <th>Date</th>
                     <th>Wrestlers</th>
                     <th>Match Details</th>
+                    <th>Average Rating</th>
                     <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
                 <% matches.forEach(function(match) { %>
-                    <tr>
-                        <td>
-                            <%= match.promotion %>
-                        </td>
-                        <td>
-                            <%= match.event %>
-                        </td>
-                        <td>
-                            <%- `${match.date.toLocaleDateString()}` %>
-                        </td>
-                        <td>
-                            <%= match.wrestlers %>
-                        </td>
-                        <td><a class="button is-info is-small is-link" href="/matches/<%= match._id %>">DETAILS</a>
-                        </td>
-                        <td>
-                            <form action="/matches/<%= match.id %>?_method=DELETE" method="POST">
-                                <button class="delete is-large"></button>
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
-                    <% }); %>
+                    <% if (match.reviews.length) { %>
+                        <% let total = 0 %>
+                            <% match.reviews.forEach(function(review) { %>
+                                <% total += review.rating %>
+                                    <% }); %>
+                                        <tr>
+                                            <td>
+                                                <%= match.promotion %>
+                                            </td>
+                                            <td>
+                                                <%= match.event %>
+                                            </td>
+                                            <td>
+                                                <%- `${match.date.toLocaleDateString()}` %>
+                                            </td>
+                                            <td>
+                                                <%= match.wrestlers %>
+                                            </td>
+                                            <td><a class="button is-info is-small is-link" href="/matches/<%= match._id %>">DETAILS</a>
+                                            </td>
+                                            <td><strong><%= (total / match.reviews.length).toFixed(1) %></strong>
+                                            </td>
+                                            <% } else { %>
+                                                <td>No Ratings Yet</td>
+                                                <% } %>
+                                                    <td>
+                                                        <form action="/matches/<%= match.id %>?_method=DELETE" method="POST">
+                                                            <button class="delete is-large"></button>
+                                                            </button>
+                                                        </form>
+                                                    </td>
+                                        </tr>
+                                        <% }); %>
             </tbody>
         </table>
 
