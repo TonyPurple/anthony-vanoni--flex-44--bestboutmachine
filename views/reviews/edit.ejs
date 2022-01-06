@@ -1,7 +1,7 @@
 <%- include('./../partials/html-head') %>
     <%- include('./../partials/nav') %>
 
-        <form class="field" action="/reviews/<%= review._id %>?_method=PUT" method="POST">>
+        <form class="field" action="/reviews/<%= review._id %>?_method=PUT" method="POST">
             <label>Edit Review:</label>
             <textarea rows="3" cols="40px" name="content" value="<%= review.content %>"></textarea>
             <label>Edit Star Rating:</label>
@@ -15,4 +15,7 @@
 <option value="6">6</option>
 <option value="7">7</option>
 </select>
-            <%- include('../partials/footer') %>
+            <button type="submit">Update Review</button>
+        </form>
+
+        <%- include('../partials/footer') %>

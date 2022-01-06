@@ -26,6 +26,10 @@
                 <dd>
                     <%= match.result %>
                 </dd>
+                <dt>Nominated By: </dt>
+                <dd>
+                    <%= match.userName %>
+                </dd>
             </dl>
 
             <h2 class="title">Reviews</h2>
@@ -76,7 +80,7 @@
                                         </td>
                                         <td>
                                             <br>
-                                            <a href="/<%= review.id %>/edit">Edit Review</a>
+                                            <a href="/reviews/<%= review.id %>/edit">Edit Review</a>
                                             <br>
                                         </td>
                                     </tr>

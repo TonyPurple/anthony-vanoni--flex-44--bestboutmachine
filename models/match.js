@@ -30,7 +30,8 @@ const matchSchema = new mongoose.Schema({
         type: String,
     },
     reviews: [reviewSchema],
-    nominatedBy: { type: Schema.Types.ObjectId, ref: "Profile" }
+    nominatedBy: { type: Schema.Types.ObjectId, ref: "Profile" },
+    userName: String
 }, {
     timestamps: true
 })

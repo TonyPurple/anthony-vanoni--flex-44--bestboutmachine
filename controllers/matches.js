@@ -1,9 +1,11 @@
 const Match = require('../models/match')
 
 function index(req, res) {
-    Match.find({}, function(err, matches) {
-        res.render('matches/index', { title: 'Recently Nominated Matches', matches });
-    }).sort({ date: 'ascending' })
+    Match.find({})
+        .sort({ date: 'ascending' })
+        .then(matches => {
+            res.render('matches/index', { title: 'Recently Nominated Matches', matches });
+        })
 }
 
 function show(req, res) {
@@ -26,6 +28,7 @@ function create(req, res) {
     const match = new Match(req.body)
         //set creator = user
     req.body.nominatedBy = req.user.profile._id
+    req.body.userName = req.user.profile.name;
     match.save(function(err) {
         // one way to handle errors
         if (err) return res.redirect('/matches/new');
