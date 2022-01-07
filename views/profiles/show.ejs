@@ -1,0 +1,21 @@
+<%- include('./../partials/html-head') %>
+    <%- include('./../partials/nav') %>
+
+        <h1>
+            <%= title %>
+        </h1>
+
+        <% profile.boutList.forEach((boutList) => { %>
+            <h5>
+                <%= boutList.wrestlers %>
+            </h5>
+            <p>
+                <%= boutList.promotion %>,
+                    <%= boutList.event %>,
+                        <%= boutList.date %>,
+                            <%= boutList.matchType %>,
+                                <%= boutList.result %>,
+                                    <%= boutList.review %>
+            </p>
+            <%}) %>
+                <%- include('./../partials/footer') %>

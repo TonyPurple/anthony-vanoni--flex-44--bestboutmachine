@@ -1,7 +1,8 @@
 var router = require('express').Router();
 var profilesCtrl = require('../controllers/profiles');
 
-router.get('/index', isLoggedIn, profilesCtrl.index);;
+router.get('/index', isLoggedIn, profilesCtrl.index);
+router.get('/:id', isLoggedIn, profilesCtrl.show)
 
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) return next();

@@ -31,6 +31,7 @@ const matchSchema = new mongoose.Schema({
     },
     reviews: [reviewSchema],
     nominatedBy: { type: Schema.Types.ObjectId, ref: "Profile" },
+    bestBoutedBy: [{ type: Schema.Types.ObjectId, ref: "Profile" }],
     userName: String
 }, {
     timestamps: true

@@ -1,4 +1,5 @@
 const Match = require('../models/match')
+const Profile = require('../models/profile');
 
 function index(req, res) {
     Match.find({})
@@ -10,12 +11,9 @@ function index(req, res) {
 
 function show(req, res) {
     Match.findById(req.params.id)
-        .populate({
-            path: 'reviews',
-            populate: {
-                path: 'reviewer'
-            }
-        }).then(match => {
+        .populate('nominatedBy')
+        .populate('bestBoutedBy')
+        .then(match => {
             res.render('matches/show', { title: 'Match Details', match });
         })
 };
@@ -25,16 +23,12 @@ function newMatch(req, res) {
 }
 
 function create(req, res) {
-    const match = new Match(req.body)
-        //set creator = user
     req.body.nominatedBy = req.user.profile._id
-    req.body.userName = req.user.profile.name;
-    match.save(function(err) {
-        // one way to handle errors
-        if (err) return res.redirect('/matches/new');
-        console.log(match);
-        res.redirect(`/matches/${match._id}`);
-    });
+    req.body.userName = req.user.profile.userName
+    Match.create(req.body)
+        .then((match) =>
+            res.redirect(`/matches/${match._id}`)
+        )
 }
 
 function deleteMatch(req, res) {
@@ -44,10 +38,24 @@ function deleteMatch(req, res) {
     });
 };
 
+function bestBout(req, res) {
+    // find profile we want to add match to
+    Profile.findById(req.user.profile._id, function(err, profile) {
+        // push the match obj id to that profile
+        profile.boutList.push(req.params.id)
+            // save 
+        profile.save(function(err, boutList) {
+            // redirect to profile/index view
+            res.redirect(`/profiles/${profile._id}`, { boutList })
+        })
+    })
+}
+
 module.exports = {
     index,
     show,
     new: newMatch,
     create,
-    delete: deleteMatch
+    delete: deleteMatch,
+    bestBout
 };

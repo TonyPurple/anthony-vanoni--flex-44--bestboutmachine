@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
     email: String,
     googleId: String,
-    profile: { type: mongoose.Schema.Types.ObjectId, ref: "Profile" }
+    profile: { type: mongoose.Schema.Types.ObjectId, ref: "Profile" },
+    isAdmin: { type: Boolean, default: false },
 }, {
     timestamps: true,
 })

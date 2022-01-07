@@ -31,7 +31,9 @@
                     <%= match.userName %>
                 </dd>
             </dl>
-
+            <a href="/matches/<%= match._id %>/profiles">
+                <input class="button is-link is-link" type="submit" value="Add To Best Bout List">
+            </a>
             <h2 class="title">Reviews</h2>
             <form class="field" method="POST" action="/matches/<%= match._id %>/reviews">
                 <label>Add Review:</label>
@@ -73,7 +75,41 @@
                                             <%= review.content %>
                                         </td>
                                         <td>
-                                            <%= review.rating %>
+                                            <% if(review.rating===1) {%>
+                                                <h1>
+                                                    <%= '⭐ '%>
+                                                </h1>
+                                                <% } %>
+                                                    <% if(review.rating===2) {%>
+                                                        <h1>
+                                                            <%= '⭐⭐' %>
+                                                        </h1>
+                                                        <% } %>
+                                                            <% if(review.rating===3) {%>
+                                                                <h1>
+                                                                    <%= '⭐⭐⭐'%>
+                                                                </h1>
+                                                                <% } %>
+                                                                    <% if(review.rating===4) {%>
+                                                                        <h1>
+                                                                            <%= '⭐⭐⭐⭐' %>
+                                                                        </h1>
+                                                                        <% } %>
+                                                                            <% if(review.rating===5) {%>
+                                                                                <h1>
+                                                                                    <%= '⭐⭐⭐⭐⭐' %>
+                                                                                </h1>
+                                                                                <% } %>
+                                                                                    <% if(review.rating===6) {%>
+                                                                                        <h1>
+                                                                                            <%= '⭐⭐⭐⭐⭐⭐' %>
+                                                                                        </h1>
+                                                                                        <% } %>
+                                                                                            <% if(review.rating===7) {%>
+                                                                                                <h1>
+                                                                                                    <%= '⭐⭐⭐⭐⭐⭐⭐' %>
+                                                                                                </h1>
+                                                                                                <% } %>
                                         </td>
                                         <td>
                                             <%= review.userName %>

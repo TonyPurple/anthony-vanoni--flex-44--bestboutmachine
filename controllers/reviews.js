@@ -8,13 +8,13 @@ function create(req, res) {
             req.body.userName = req.user.profile.name;
             match.reviews.push(req.body);
             match.save()
-                .then(() => {
-                    Profile.findById(req.user.profile._id)
-                        .then(profile => {
-                            profile.reviews.push(req.body)
-                            profile.save()
-                        })
-                })
+                // .then(() => {
+                //     Profile.findById(req.user.profile._id)
+                //         .then(profile => {
+                //             profile.reviews.push(req.body)
+                //             profile.save()
+                //         })
+                // })
                 .then(() => {
                     res.redirect(`/matches/${match._id}`);
                 })
