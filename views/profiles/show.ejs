@@ -17,5 +17,11 @@
                                 <%= boutList.result %>,
                                     <%= boutList.review %>
             </p>
+            <form action="/matches/<%= boutList._id %>/edit" method="GET">
+                <button type="submit">Edit Match</button>
+            </form>
+            <form action="/profiles/boutList/<%= boutList._id %>?_method=DELETE" method="POST">
+                <button type="submit">Delete from Best Bout List</button>
+            </form>
             <%}) %>
                 <%- include('./../partials/footer') %>

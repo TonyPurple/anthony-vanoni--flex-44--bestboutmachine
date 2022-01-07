@@ -24,7 +24,7 @@ function newMatch(req, res) {
 
 function create(req, res) {
     req.body.nominatedBy = req.user.profile._id
-    req.body.userName = req.user.profile.userName
+    req.body.userName = req.user.profile.name
     Match.create(req.body)
         .then((match) =>
             res.redirect(`/matches/${match._id}`)
