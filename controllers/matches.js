@@ -44,9 +44,9 @@ function bestBout(req, res) {
         // push the match obj id to that profile
         profile.boutList.push(req.params.id)
             // save 
-        profile.save(function(err, boutList) {
+        profile.save(function(err) {
             // redirect to profile/index view
-            res.redirect(`/profiles/${profile._id}`, { boutList })
+            res.redirect(`/profiles/${profile._id}`)
         })
     })
 }

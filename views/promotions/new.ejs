@@ -1,28 +1,29 @@
 <%- include('./../partials/html-head') %>
     <%- include('./../partials/nav') %>
-        <div class="field" <p>Please first ensure that the Promotion is not in the dropdown
-            <div class="control">
-                <div class="select">
-                    <select>
+        <div class="field">
+            <p>Please first ensure that the Promotion is not in the dropdown
+                <div class="control">
+                    <div class="select is-info is-rounded is-small">
+                        <select>
     <% promotions.forEach(function(promotion) { %>
       <option><%= promotion.name %></option>
     <% }) %>
   </select>
+                    </div>
                 </div>
-            </div>
             </p>
             <form class="field" action="/promotions" method="POST">
                 <label class="label">Promotion Name:</label>
                 <div class="control">
-                    <input class="input is-info" type="text" name="name">
+                    <input class="input is-info is-rounded" type="text" name="name">
                 </div>
                 <label class="label">Country:</label>
                 <div class="control">
-                    <input class="input is-info" type="text" name="country">
+                    <input class="input is-info is-rounded" type="text" name="country">
                 </div>
                 </br>
                 <div class="control">
-                    <input class="button is-link is-outlined" type="submit" value="Add Promotion">
+                    <input class="button is-link is-outlined is-rounded" type="submit" value="Add Promotion">
                 </div>
             </form>
             <br>

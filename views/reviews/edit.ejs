@@ -2,10 +2,11 @@
     <%- include('./../partials/nav') %>
 
         <form class="field" action="/reviews/<%= review._id %>?_method=PATCH" method="POST">
-            <label>Edit Review:</label>
-            <textarea class="textarea is-success" rows="3" cols="40px" name="content" placeholder="<%= review.content %>"></textarea>
-            <label>Edit Star Rating:</label>
-            <select class="select" name="rating" placeholder="<%= review.rating %>">
+            <label class="label">Edit Review:</label>
+            <textarea class="textarea is-info is-large" name="content" placeholder="<%= review.content %>"></textarea>
+            <label class="label">Edit Star Rating:</label>
+            <div class="select is-info is-rounded is-small">
+                <select name="rating" placeholder="<%= review.rating %>">
 <option value="0">0</option>
 <option value="1">1</option>
 <option value="2">2</option>
@@ -15,7 +16,9 @@
 <option value="6">6</option>
 <option value="7">7</option>
 </select>
-            <button type="submit">Update Review</button>
+            </div>
+            </br>
+            <button class="button is-link is-rounded" type="submit">Update Review</button>
         </form>
 
         <%- include('../partials/footer') %>

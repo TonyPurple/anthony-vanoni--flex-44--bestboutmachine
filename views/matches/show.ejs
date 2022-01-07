@@ -1,48 +1,51 @@
 <%- include('./../partials/html-head') %>
     <%- include('./../partials/nav') %>
-        <div class="content is-medium">
-            <dl>
-                <dt>Promotion: </dt>
-                <dd>
-                    <%= match.promotion %>
-                </dd>
-                <dt>Event: </dt>
-                <dd>
-                    <%= match.event %>
-                </dd>
-                <dt>Date: </dt>
-                <dd>
-                    <%= match.date.toLocaleDateString() %>
-                </dd>
-                <dt>Wrestlers: </dt>
-                <dd>
-                    <%= match.wrestlers %>
-                </dd>
-                <dt>Match Type: </dt>
-                <dd>
-                    <%= match.matchType %>
-                </dd>
-                <dt>Result: </dt>
-                <dd>
-                    <%= match.result %>
-                </dd>
-                <dt>Nominated By: </dt>
-                <dd>
-                    <%= match.userName %>
-                </dd>
-            </dl>
-            <a href="/matches/<%= match._id %>/profiles">
-                <input class="button is-link is-rounded" type="submit" value="Add To Best Bout List">
-            </a>
+        <div class="container">
+            <div class="notification is-info">
+                <dl>
+                    <dt>Promotion: </dt>
+                    <dd>
+                        <%= match.promotion %>
+                    </dd>
+                    <dt>Event: </dt>
+                    <dd>
+                        <%= match.event %>
+                    </dd>
+                    <dt>Date: </dt>
+                    <dd>
+                        <%= match.date.toLocaleDateString() %>
+                    </dd>
+                    <dt>Wrestlers: </dt>
+                    <dd>
+                        <%= match.wrestlers %>
+                    </dd>
+                    <dt>Match Type: </dt>
+                    <dd>
+                        <%= match.matchType %>
+                    </dd>
+                    <dt>Result: </dt>
+                    <dd>
+                        <strong><%= match.result %></strong>
+                    </dd>
+                    <dt>Nominated By: </dt>
+                    <dd>
+                        <%= match.userName %>
+                    </dd>
+                </dl>
+                <a href="/matches/<%= match._id %>/profiles">
+                    <input class="button is-link is-rounded" type="submit" value="Add To Best Bout List">
+                </a>
+            </div>
             <h2 class="title">Reviews</h2>
             <form class="field" method="POST" action="/matches/<%= match._id %>/reviews">
                 <div class="field">
                     <label class="label">Review Match:</label>
                     <div class="control">
-                        <textarea class="textarea is-info" rows="3" cols="40px" name="content"></textarea>
+                        <textarea class="textarea is-info is-large" name="content"></textarea>
                     </div>
                     <label class="label">Star Rating:</label>
-                    <select class="select" name="rating">
+                    <div class="select is-info is-rounded is-small">
+                        <select name="rating">
     <option value="0">0</option>
     <option value="1">1</option>
     <option value="2">2</option>
@@ -52,6 +55,7 @@
     <option value="6">6</option>
     <option value="7">7</option>
   </select>
+                    </div>
                 </div>
                 <input class="button is-link is-rounded" type="submit" value="Add Review">
             </form>
@@ -105,7 +109,7 @@
                                                                                             <% } %>
                                                                                                 <%= review.userName %>
                                                                                                     <br>
-                                                                                                    <a class="button is-warning" href="/reviews/<%= review.id %>/edit">Edit Review</a>
+                                                                                                    <a class="button is-warning is-rounded" href="/reviews/<%= review.id %>/edit">Edit Review</a>
                                                                                                     <br>
                                                                                                     <!-- <td>
                                             <form action="/matches/<%#= match._id %>/reviews/<%#= review._id %>?_method=DELETE" method="POST">
