@@ -1,6 +1,5 @@
 var Match = require('../models/match');
 const Profile = require('../models/profile');
-const matches = require('./matches');
 
 function create(req, res) {
     Match.findById(req.params.id)
@@ -21,6 +20,17 @@ function create(req, res) {
                 })
         })
 }
+
+// function deleteReview(req, res) {
+//     Match.findById(req.params.id)
+//         .then(match => {
+//             const review = match.review
+//             review.remove({ _id: req.params.reviewId })
+//             match.save(function(err, reviews) {
+//                 res.redirect(`/matches/${req.params.matchId}`, { reviews })
+//             })
+//         })
+// }
 
 function edit(req, res) {
     // Match.findOne({ 'reviews._id': req.params.id }, function(err, review) {

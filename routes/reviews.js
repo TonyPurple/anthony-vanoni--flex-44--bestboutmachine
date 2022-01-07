@@ -3,7 +3,8 @@ var reviewsCtrl = require('../controllers/reviews');
 
 router.post('/matches/:id/reviews', isLoggedIn, reviewsCtrl.create);
 router.get('/reviews/:id/edit', isLoggedIn, reviewsCtrl.edit)
-router.patch('matches/:id/reviews', isLoggedIn, reviewsCtrl.update)
+router.patch('/matches/:id/reviews', isLoggedIn, reviewsCtrl.update)
+    // router.delete('/matches/:id/reviews/:id', isLoggedIn, reviewsCtrl.delete)
 
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) return next();

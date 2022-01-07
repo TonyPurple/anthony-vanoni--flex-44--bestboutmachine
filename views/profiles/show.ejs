@@ -2,26 +2,34 @@
     <%- include('./../partials/nav') %>
 
         <h1>
-            <%= title %>
+            <%= user.profile.name %>'s Best Bout List
         </h1>
 
         <% profile.boutList.forEach((boutList) => { %>
-            <h5>
-                <%= boutList.wrestlers %>
-            </h5>
-            <p>
-                <%= boutList.promotion %>,
-                    <%= boutList.event %>,
-                        <%= boutList.date %>,
-                            <%= boutList.matchType %>,
-                                <%= boutList.result %>,
-                                    <%= boutList.review %>
-            </p>
-            <form action="/matches/<%= boutList._id %>/edit" method="GET">
-                <button type="submit">Edit Match</button>
-            </form>
-            <form action="/profiles/boutList/<%= boutList._id %>?_method=DELETE" method="POST">
-                <button type="submit">Delete from Best Bout List</button>
-            </form>
+            <div class="card">
+                <div class="card-content">
+                    <p class="title is-4">
+                        <%= boutList.wrestlers %>
+                    </p>
+                    <p class="subtitle is-6">
+                        <%= boutList.promotion %>
+                    </p>
+                    <div class="content">
+                        <%= boutList.event %>,
+                            <%= boutList.date.toLocaleDateString() %>,
+                                <%= boutList.matchType %>,
+                                    <%= boutList.result %>
+                    </div>
+                    <footer class="card-footer">
+                        <form action="/matches/<%= boutList._id %>/edit" method="GET">
+                            <button class="card-footer-item" type="submit">Edit Match</button>
+                        </form>
+                        <form action="/profiles/boutList/<%= boutList._id %>?_method=DELETE" method="POST">
+                            <button class="card-footer-item" type="submit">Delete from Best Bout List</button>
+                        </form>
+                    </footer>
+                </div>
+            </div>
+            <br>
             <%}) %>
                 <%- include('./../partials/footer') %>

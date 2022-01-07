@@ -53,84 +53,73 @@
             </form>
 
             <% if (match.reviews.length) { %>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Review</th>
-                            <th>Rating</th>
-                            <th>Reviewer</th>
-                            <td>Edit</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% let total = 0 %>
-                            <% match.reviews.forEach(function(review) { %>
-                                <% total += review.rating %>
-                                    <tr>
-                                        <td>
-                                            <%= review.createdAt.toLocaleDateString() %>
-                                        </td>
-                                        <td>
-                                            <%= review.content %>
-                                        </td>
-                                        <td>
-                                            <% if(review.rating===1) {%>
-                                                <h1>
-                                                    <%= '⭐ '%>
-                                                </h1>
-                                                <% } %>
-                                                    <% if(review.rating===2) {%>
-                                                        <h1>
-                                                            <%= '⭐⭐' %>
-                                                        </h1>
-                                                        <% } %>
-                                                            <% if(review.rating===3) {%>
-                                                                <h1>
-                                                                    <%= '⭐⭐⭐'%>
-                                                                </h1>
-                                                                <% } %>
-                                                                    <% if(review.rating===4) {%>
-                                                                        <h1>
-                                                                            <%= '⭐⭐⭐⭐' %>
-                                                                        </h1>
-                                                                        <% } %>
-                                                                            <% if(review.rating===5) {%>
-                                                                                <h1>
-                                                                                    <%= '⭐⭐⭐⭐⭐' %>
-                                                                                </h1>
-                                                                                <% } %>
-                                                                                    <% if(review.rating===6) {%>
-                                                                                        <h1>
-                                                                                            <%= '⭐⭐⭐⭐⭐⭐' %>
-                                                                                        </h1>
-                                                                                        <% } %>
-                                                                                            <% if(review.rating===7) {%>
-                                                                                                <h1>
-                                                                                                    <%= '⭐⭐⭐⭐⭐⭐⭐' %>
-                                                                                                </h1>
-                                                                                                <% } %>
-                                        </td>
-                                        <td>
-                                            <%= review.userName %>
-                                        </td>
-                                        <td>
-                                            <br>
-                                            <a href="/reviews/<%= review.id %>/edit">Edit Review</a>
-                                            <br>
-                                        </td>
-                                    </tr>
-                                    <% }); %>
-                                        <tr>
-                                            <td colspan="2"></td>
-                                            <td><strong><%= (total / match.reviews.length).toFixed(1) %></strong></td>
-                                        </tr>
-                    </tbody>
-                </table>
-                <% } else { %>
-                    <p>No Reviews Yet</p>
-                    <% } %>
-                        <br>
+                <% let total = 0 %>
+                    <% match.reviews.forEach(function(review) { %>
+                        <% total += review.rating %>
+                            <article class="message is-dark">
+                                <div class="message-header">
+                                    <p>
+                                        <%= review.createdAt.toLocaleDateString() %>
+                                    </p>
+                                </div>
+                                <div class="message-body">
+                                    <%= review.content %>
+                                        <% if(review.rating===1) {%>
+                                            <h1>
+                                                <%= '⭐ '%>
+                                            </h1>
+                                            <% } %>
+                                                <% if(review.rating===2) {%>
+                                                    <h1>
+                                                        <%= '⭐⭐' %>
+                                                    </h1>
+                                                    <% } %>
+                                                        <% if(review.rating===3) {%>
+                                                            <h1>
+                                                                <%= '⭐⭐⭐'%>
+                                                            </h1>
+                                                            <% } %>
+                                                                <% if(review.rating===4) {%>
+                                                                    <h1>
+                                                                        <%= '⭐⭐⭐⭐' %>
+                                                                    </h1>
+                                                                    <% } %>
+                                                                        <% if(review.rating===5) {%>
+                                                                            <h1>
+                                                                                <%= '⭐⭐⭐⭐⭐' %>
+                                                                            </h1>
+                                                                            <% } %>
+                                                                                <% if(review.rating===6) {%>
+                                                                                    <h1>
+                                                                                        <%= '⭐⭐⭐⭐⭐⭐' %>
+                                                                                    </h1>
+                                                                                    <% } %>
+                                                                                        <% if(review.rating===7) {%>
+                                                                                            <h1>
+                                                                                                <%= '⭐⭐⭐⭐⭐⭐⭐' %>
+                                                                                            </h1>
+                                                                                            <% } %>
+                                                                                                <%= review.userName %>
+                                                                                                    <br>
+                                                                                                    <a href="/reviews/<%= review.id %>/edit">Edit Review</a>
+                                                                                                    <br>
+                                                                                                    <!-- <td>
+                                            <form action="/matches/<%#= match._id %>/reviews/<%#= review._id %>?_method=DELETE" method="POST">
+                                                <button type="submit">Delete</button>
+                                            </form>
+                                        </td> -->
+                                </div>
+                            </article>
+                            <% }); %>
+                                <article class="message is-medium">
+                                    <div class="message-header">Average Star Rating
+                                        <p><strong><%= (total / match.reviews.length).toFixed(1) %></strong></p>
+                                    </div>
+                                </article>
+                                <% } else { %>
+                                    <div class="message-body">No Reviews Yet</div>
+                                    <% } %>
+                                        <br>
         </div>
 
         <%- include('../partials/footer') %>
