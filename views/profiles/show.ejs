@@ -21,12 +21,18 @@
                                     <%= boutList.result %>
                     </div>
                     <footer class="card-footer">
-                        <form action="/matches/<%= boutList._id %>/edit" method="GET">
-                            <button class="card-footer-item" type="submit">Edit Match</button>
-                        </form>
-                        <form action="/profiles/boutList/<%= boutList._id %>?_method=DELETE" method="POST">
-                            <button class="card-footer-item" type="submit">Delete from Best Bout List</button>
-                        </form>
+                        <div class="field is-grouped">
+                            <p class="control">
+                                <form action="/matches/<%= boutList._id %>/edit" method="GET">
+                                    <button class="card-footer-item" type="submit">Edit Match</button>
+                                </form>
+                            </p>
+                            <p class="control">
+                                <form action="/profiles/boutList/<%= boutList._id %>?_method=DELETE" method="POST">
+                                    <button class="card-footer-item" type="submit">Delete from Best Bout List</button>
+                                </form>
+                            </p>
+                        </div>
                     </footer>
                 </div>
             </div>

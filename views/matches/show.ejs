@@ -32,14 +32,17 @@
                 </dd>
             </dl>
             <a href="/matches/<%= match._id %>/profiles">
-                <input class="button is-link is-link" type="submit" value="Add To Best Bout List">
+                <input class="button is-link is-rounded" type="submit" value="Add To Best Bout List">
             </a>
             <h2 class="title">Reviews</h2>
             <form class="field" method="POST" action="/matches/<%= match._id %>/reviews">
-                <label>Add Review:</label>
-                <textarea rows="3" cols="40px" name="content"></textarea>
-                <label>Star Rating:</label>
-                <select class="select" name="rating">
+                <div class="field">
+                    <label class="label">Review Match:</label>
+                    <div class="control">
+                        <textarea class="textarea is-info" rows="3" cols="40px" name="content"></textarea>
+                    </div>
+                    <label class="label">Star Rating:</label>
+                    <select class="select" name="rating">
     <option value="0">0</option>
     <option value="1">1</option>
     <option value="2">2</option>
@@ -49,7 +52,8 @@
     <option value="6">6</option>
     <option value="7">7</option>
   </select>
-                <input class="button is-link is-link" type="submit" value="Add Review">
+                </div>
+                <input class="button is-link is-rounded" type="submit" value="Add Review">
             </form>
 
             <% if (match.reviews.length) { %>
@@ -101,7 +105,7 @@
                                                                                             <% } %>
                                                                                                 <%= review.userName %>
                                                                                                     <br>
-                                                                                                    <a href="/reviews/<%= review.id %>/edit">Edit Review</a>
+                                                                                                    <a class="button is-warning" href="/reviews/<%= review.id %>/edit">Edit Review</a>
                                                                                                     <br>
                                                                                                     <!-- <td>
                                             <form action="/matches/<%#= match._id %>/reviews/<%#= review._id %>?_method=DELETE" method="POST">

@@ -3,7 +3,7 @@
 
         <form class="field" action="/reviews/<%= review._id %>?_method=PATCH" method="POST">
             <label>Edit Review:</label>
-            <textarea rows="3" cols="40px" name="content" placeholder="<%= review.content %>"></textarea>
+            <textarea class="textarea is-success" rows="3" cols="40px" name="content" placeholder="<%= review.content %>"></textarea>
             <label>Edit Star Rating:</label>
             <select class="select" name="rating" placeholder="<%= review.rating %>">
 <option value="0">0</option>
