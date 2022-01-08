@@ -24,10 +24,9 @@ function create(req, res) {
 // function deleteReview(req, res) {
 //     Match.findById(req.params.id)
 //         .then(match => {
-//             const review = match.review
-//             review.remove({ _id: req.params.reviewId })
+//             review.remove({ _id: req.params.id })
 //             match.save(function(err, reviews) {
-//                 res.redirect(`/matches/${req.params.matchId}`, { reviews })
+//                 res.redirect(`/matches/${req.params._id}`, { reviews })
 //             })
 //         })
 // }

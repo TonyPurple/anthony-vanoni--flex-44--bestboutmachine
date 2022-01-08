@@ -3,12 +3,12 @@ const Match = require('../models/match')
 
 function index(req, res) {
     Profile.findById(req.params.profileId)
-        .populate({
-            path: 'reviews',
-            populate: {
-                path: 'match'
-            }
-        })
+        // .populate({
+        //     path: 'reviews',
+        //     // populate: {
+        //     //     path: 'match'
+        //     // }
+        // })
         .then(profile => {
             res.render('profiles/show', {
                 title: 'User Profile',
@@ -26,6 +26,7 @@ function index(req, res) {
 function show(req, res) {
     Profile.findById(req.params.id)
         .populate('boutList')
+        // .populate(req.user.profile._id.reviews)
         .then(profile => {
             res.render('profiles/show', {
                 title: "User Profile",
@@ -35,7 +36,20 @@ function show(req, res) {
         })
 }
 
+function deleteBout(req, res) {
+    Profile.findById(req.user.profile._id)
+        .populate('boutList')
+        .then(profile => {
+            const bestbouts = profile.boutList
+            bestbouts.remove({ _id: req.params.id })
+            profile.save(function(err) {
+                res.redirect(`/profiles/${profile._id}`)
+            })
+        })
+}
+
 module.exports = {
     index,
-    show
+    show,
+    deleteBout
 };
