@@ -8,13 +8,13 @@
         <% profile.boutList.forEach((boutList) => { %>
             <div class="card">
                 <div class="card-content">
-                    <p class="title is-4">
+                    <p class="title is-4 has-text-link">
                         <%= boutList.wrestlers %>
                     </p>
-                    <p class="subtitle is-6">
+                    <p class="subtitle is-6 has-text-black-bis">
                         <%= boutList.promotion %>
                     </p>
-                    <div class="content">
+                    <div class="content has-text-black-bis">
                         <%= boutList.event %>,
                             <%= boutList.date.toLocaleDateString() %>,
                                 <%= boutList.matchType %>,

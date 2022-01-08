@@ -1,12 +1,12 @@
 </head>
 
 <body>
-    <section class="section">
-        <div class="container">
+    <section class="section is-family-monospace">
+        <div class="container has-text-justified">
             <nav class="navbar" role="navigation" aria-label="main navigation">
                 <div class="navbar-brand">
                     <div class="navbar-start">
-                        <a class="navbar-item button .is-black is-outlined is-rounded" href="/">Best Bout Machine</a>
+                        <a class="navbar-item button is-dark is-outlined is-rounded" href="/">Best Bout Machine</a>
                         <a class="navbar-item button is-light is-inverted is-rounded" href="/matches">Recent Nominations</a>
                         <a class="navbar-item button is-light is-inverted is-rounded" href="/matches/new">Nominate a Match</a>
                         <a class="navbar-item button is-light is-inverted is-rounded" href="/promotions/new">ADD Promotion</a>
@@ -27,13 +27,18 @@
                                             <div class="navbar-item">
                                                 <img src="https://i.imgur.com/tNbIrh8s.jpg" height="28" width="28">
                                             </div>
-                                            <a class="navbar-item button .is-black is-outlined is-rounded" href="/auth/google">Sign In w/ Google</a>
+                                            <a class="navbar-item button is-dark is-outlined is-rounded" href="/auth/google">Sign In w/ Google</a>
                                             <% } %>
                         </div>
                     </div>
                 </div>
             </nav>
             <br>
-            <h1 class="title">
-                <%= title %>
-            </h1>
+            <section class="hero is-small is-warning">
+                <div class="hero-body">
+                    <h1 class="title is-pulled-right">
+                        <%= title %>
+                    </h1>
+                </div>
+            </section>
+            <br>

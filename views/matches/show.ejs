@@ -1,51 +1,52 @@
 <%- include('./../partials/html-head') %>
     <%- include('./../partials/nav') %>
         <div class="container">
-            <div class="notification is-info">
-                <dl>
-                    <dt>Promotion: </dt>
-                    <dd>
+            <div class="notification is-white-bis">
+                <section class="section">
+                    <h1 class="title">Promotion: </h1>
+                    <h2 class="subtitle has-background-white">
                         <%= match.promotion %>
-                    </dd>
-                    <dt>Event: </dt>
-                    <dd>
+                    </h2>
+                    <h1 class="title">Event: </h1>
+                    <h2 class="subtitle has-background-white">
                         <%= match.event %>
-                    </dd>
-                    <dt>Date: </dt>
-                    <dd>
+                    </h2>
+                    <h1 class="title">Date: </h1>
+                    <h2 class="subtitle has-background-white">
                         <%= match.date.toLocaleDateString() %>
-                    </dd>
-                    <dt>Wrestlers: </dt>
-                    <dd>
+                    </h2>
+                    <h1 class="title">Wrestlers: </h1>
+                    <h2 class="subtitle has-background-white">
                         <%= match.wrestlers %>
-                    </dd>
-                    <dt>Match Type: </dt>
-                    <dd>
+                    </h2>
+                    <h1 class="title">Match Type: </h1>
+                    <h2 class="subtitle has-background-white">
                         <%= match.matchType %>
-                    </dd>
-                    <dt>Result: </dt>
-                    <dd>
-                        <strong><%= match.result %></strong>
-                    </dd>
-                    <dt>Nominated By: </dt>
-                    <dd>
+                    </h2>
+                    <h1 class="title">Result: </h1>
+                    <h2 class="subtitle has-background-white">
+                        <%= match.result %>
+                    </h2>
+                    <h1 class="title">Nominated By: </h1>
+                    <h2 class="subtitle has-background-white">
                         <%= match.userName %>
-                    </dd>
-                </dl>
-                <a href="/matches/<%= match._id %>/profiles">
-                    <input class="button is-link is-rounded" type="submit" value="Add To Best Bout List">
-                </a>
+                    </h2>
+                    <br>
+                    <a href="/matches/<%= match._id %>/profiles">
+                        <input class="button is-dark is-rounded" type="submit" value="Add To Best Bout List">
+                    </a>
+                </section>
             </div>
-            <h2 class="title">Reviews</h2>
-            <form class="field" method="POST" action="/matches/<%= match._id %>/reviews">
-                <div class="field">
-                    <label class="label">Review Match:</label>
-                    <div class="control">
-                        <textarea class="textarea is-info is-large" name="content"></textarea>
-                    </div>
-                    <label class="label">Star Rating:</label>
-                    <div class="select is-info is-rounded is-small">
-                        <select name="rating">
+            <section class="section has-background-warning">
+                <form class="field" method="POST" action="/matches/<%= match._id %>/reviews">
+                    <div class="field">
+                        <label class="label is-size-2">Review Match:</label>
+                        <div class="control">
+                            <textarea class="textarea is-info is-large" name="content"></textarea>
+                        </div>
+                        <label class="label is-size-2">Star Rating:</label>
+                        <div class="select is-info is-rounded is-small">
+                            <select name="rating">
     <option value="0">0</option>
     <option value="1">1</option>
     <option value="2">2</option>
@@ -55,57 +56,62 @@
     <option value="6">6</option>
     <option value="7">7</option>
   </select>
+                        </div>
                     </div>
-                </div>
-                <input class="button is-link is-rounded" type="submit" value="Add Review">
-            </form>
+                    <input class="button is-dark is-rounded" type="submit" value="Add Review">
+                </form>
+            </section>
+            <br>
 
             <% if (match.reviews.length) { %>
                 <% let total = 0 %>
                     <% match.reviews.forEach(function(review) { %>
                         <% total += review.rating %>
-                            <article class="message is-dark">
-                                <div class="message-header">
-                                    <p>
-                                        <%= review.createdAt.toLocaleDateString() %>
-                                    </p>
-                                </div>
-                                <div class="message-body">
-                                    <%= review.content %>
+                            <section class="section-is-medium">
+                                <article class="message">
+                                    <div class="message-header">
+                                        <h1>
+                                            <%= review.createdAt.toLocaleDateString() %>
+                                        </h1>
+                                    </div>
+                                    <div class="message-body has-background-white-bis">
+                                        <p class="subtitle">
+                                            <%= review.content %>
+                                        </p>
                                         <% if(review.rating===1) {%>
-                                            <h1>
+                                            <h2>
                                                 <%= '⭐ '%>
-                                            </h1>
+                                            </h2>
                                             <% } %>
                                                 <% if(review.rating===2) {%>
-                                                    <h1>
+                                                    <h2>
                                                         <%= '⭐⭐' %>
-                                                    </h1>
+                                                    </h2>
                                                     <% } %>
                                                         <% if(review.rating===3) {%>
-                                                            <h1>
+                                                            <h2>
                                                                 <%= '⭐⭐⭐'%>
-                                                            </h1>
+                                                            </h2>
                                                             <% } %>
                                                                 <% if(review.rating===4) {%>
-                                                                    <h1>
+                                                                    <h2>
                                                                         <%= '⭐⭐⭐⭐' %>
-                                                                    </h1>
+                                                                    </h2>
                                                                     <% } %>
                                                                         <% if(review.rating===5) {%>
-                                                                            <h1>
+                                                                            <h2>
                                                                                 <%= '⭐⭐⭐⭐⭐' %>
-                                                                            </h1>
+                                                                            </h2>
                                                                             <% } %>
                                                                                 <% if(review.rating===6) {%>
-                                                                                    <h1>
+                                                                                    <h2>
                                                                                         <%= '⭐⭐⭐⭐⭐⭐' %>
-                                                                                    </h1>
+                                                                                    </h2>
                                                                                     <% } %>
                                                                                         <% if(review.rating===7) {%>
-                                                                                            <h1>
+                                                                                            <h2>
                                                                                                 <%= '⭐⭐⭐⭐⭐⭐⭐' %>
-                                                                                            </h1>
+                                                                                            </h2>
                                                                                             <% } %>
                                                                                                 <%= review.userName %>
                                                                                                     <br>
@@ -116,18 +122,19 @@
                                                 <button type="submit">Delete</button>
                                             </form>
                                         </td> -->
-                                </div>
-                            </article>
-                            <% }); %>
-                                <article class="message is-medium">
-                                    <div class="message-header">Average Star Rating
-                                        <p><strong><%= (total / match.reviews.length).toFixed(1) %></strong></p>
                                     </div>
                                 </article>
-                                <% } else { %>
-                                    <div class="message-body">No Reviews Yet</div>
-                                    <% } %>
-                                        <br>
+                                <% }); %>
+                                    <article class="message is-medium">
+                                        <div class="message-header">Average Star Rating
+                                            <p><strong><%= (total / match.reviews.length).toFixed(1) %></strong></p>
+                                        </div>
+                                    </article>
+                                    <% } else { %>
+                                        <div class="message-body has-background-danger-light">No Reviews Yet</div>
+                                        <% } %>
+                            </section>
+                            <br>
         </div>
 
         <%- include('../partials/footer') %>

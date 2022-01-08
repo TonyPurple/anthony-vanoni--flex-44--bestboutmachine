@@ -1,55 +1,71 @@
 <%- include('./../partials/html-head') %>
     <%- include('./../partials/nav') %>
-
-        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
-            <thead>
-                <tr>
-                    <th>Promotion</th>
-                    <th>Event</th>
-                    <th>Date</th>
-                    <th>Wrestlers</th>
-                    <th>Match Details</th>
-                    <th>Average Rating</th>
-                    <th>Delete</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% matches.forEach(function(match) { %>
-                    <% if (match.reviews.length) { %>
-                        <% let total = 0 %>
-                            <% match.reviews.forEach(function(review) { %>
-                                <% total += review.rating %>
-                                    <% }); %>
-                                        <tr>
-                                            <td>
-                                                <%= match.promotion %>
-                                            </td>
-                                            <td>
-                                                <%= match.event %>
-                                            </td>
-                                            <td>
-                                                <%- `${match.date.toLocaleDateString()}` %>
-                                            </td>
-                                            <td>
-                                                <%= match.wrestlers %>
-                                            </td>
-                                            <td><a class="button is-info is-small is-rounded" href="/matches/<%= match._id %>">DETAILS</a>
-                                            </td>
-                                            <td><strong><%= (total / match.reviews.length).toFixed(1) %></strong>
-                                            </td>
-                                            <% } else { %>
-                                                <td>No Ratings Yet</td>
-                                                <% } %>
-                                                    <td>
+        <% matches.forEach(function(match) { %>
+            <% if (match.reviews.length) { %>
+                <% let total = 0 %>
+                    <% match.reviews.forEach(function(review) { %>
+                        <% total += review.rating %>
+                            <% }); %>
+                                <div class="tile is-ancestor">
+                                    <div class="tile is-parent">
+                                        <div class="tile is-child box">
+                                            <article class="tile is-child notification is-dark">
+                                                <p class="title">
+                                                    <%= match.wrestlers %>
+                                                </p>
+                                                <p class="subtitle">
+                                                    <%= match.promotion %>
+                                                </p>
+                                                <p class="subtitle">
+                                                    <%= match.event %>
+                                                </p>
+                                                <p class="subtitle">
+                                                    <%- `${match.date.toLocaleDateString()}` %>
+                                                </p>
+                                                <p class="subtitle"><a class="button is-link is-small is-rounded" href="/matches/<%= match._id %>">DETAILS</a></p>
+                                                <p class="subtitle">
+                                                    <%= (total / match.reviews.length).toFixed(1) %>
+                                                </p>
+                                                <p class="subtitle">
+                                                    <form action="/matches/<%= match.id %>?_method=DELETE" method="POST">
+                                                        <button class="delete is-large"></button>
+                                                        </button>
+                                                    </form>
+                                                </p>
+                                            </article>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% } else { %>
+                                    <div class="tile is-ancestor">
+                                        <div class="tile is-parent">
+                                            <div class="tile is-child box">
+                                                <article class="tile is-child notification is-dark">
+                                                    <p class="title">
+                                                        <%= match.wrestlers %>
+                                                    </p>
+                                                    <p class="subtitle">
+                                                        <%= match.promotion %>
+                                                    </p>
+                                                    <p class="subtitle">
+                                                        <%= match.event %>
+                                                    </p>
+                                                    <p class="subtitle">
+                                                        <%- `${match.date.toLocaleDateString()}` %>
+                                                    </p>
+                                                    <p class="subtitle"><a class="button is-link is-small is-rounded" href="/matches/<%= match._id %>">DETAILS</a></p>
+                                                    <p class="subtitle">No Ratings Yet</p>
+                                                    <p class="subtitle">
                                                         <form action="/matches/<%= match.id %>?_method=DELETE" method="POST">
                                                             <button class="delete is-large"></button>
                                                             </button>
                                                         </form>
-                                                    </td>
-                                        </tr>
+                                                    </p>
+                                                </article>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <% } %>
                                         <% }); %>
-            </tbody>
-        </table>
-
-        <br>
-        <%- include('../partials/footer') %>
+                                            <br>
+                                            <%- include('../partials/footer') %>
