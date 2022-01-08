@@ -26,16 +26,15 @@ function create(req, res) {
 }
 
 // function deleteReview(req, res) {
-//     Match.findById(req.params.id)
-//         .populate("reviews")
-//         .then(match => {
-//             match.reviews.findById(req.params.reviews._id)
-//             match.reviews.remove(req.body);
+//     Match.findById(req.params.matchId)
+//         .then((match => {
+//             match.reviews.findByIdAndDelete(req.params._id)
+//                 // match.reviews.remove(req.params._id);
 //             match.save()
 //                 .then(() => {
 //                     res.redirect(`/matches/${req.params._id}`)
-//                 })
-//         })
+//                 });
+//         }))
 //         .catch(err => {
 //             console.log(err)
 //             res.redirect('/')
@@ -82,5 +81,6 @@ function update(req, res) {
 module.exports = {
     create,
     edit,
-    update
+    update,
+    // deleteReview
 };

@@ -39,7 +39,8 @@ function deleteMatch(req, res) {
 };
 
 function bestBout(req, res) {
-    // find profile we want to add match to
+    req.body.bestBoutedBy = req.user.profile._id
+        // find profile we want to add match to
     Profile.findById(req.user.profile._id, function(err, profile) {
         // push the match obj id to that profile
         profile.boutList.push(req.params.id)

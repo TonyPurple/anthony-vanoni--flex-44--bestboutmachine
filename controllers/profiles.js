@@ -37,13 +37,26 @@ function index(req, res) {
 function show(req, res) {
     Profile.findById(req.params.id)
         .populate('boutList')
+        .populate('faction')
         // .populate(req.user.profile._id.reviews)
         .then(profile => {
-            res.render('profiles/show', {
-                title: "User Profile",
-                user: req.user,
-                profile
-            })
+            Match.find({ nominatedBy: profile._id })
+                .then(matches => {
+                    Profile.findById(req.user.profile)
+                        .then(userProfile => {
+                            res.render('profiles/show', {
+                                title: `${profile.name}'s profile`,
+                                user: req.user,
+                                profile,
+                                userProfile,
+                                matches
+                            })
+                        })
+                })
+        })
+        .catch(err => {
+            console.log(err)
+            res.redirect("/")
         })
 }
 
@@ -56,6 +69,61 @@ function deleteBout(req, res) {
             profile.save(function(err) {
                 res.redirect(`/profiles/${profile._id}`)
             })
+        })
+}
+
+function edit(req, res) {
+    Profile.findById(req.params.id)
+        .then(profile => {
+            res.render("profiles/edit", {
+                title: `Repackaging ${profile.name}'s gimmick`,
+                profile
+            })
+        })
+        .catch(err => {
+            console.log(err)
+            res.redirect("/")
+        })
+}
+
+function update(req, res) {
+    Profile.findByIdAndUpdate(req.params.id, req.body)
+        .then(profile => {
+            res.redirect(`/profiles/${profile._id}`)
+        })
+        .catch(err => {
+            console.log(err)
+            res.redirect("/")
+        })
+}
+
+function follow(req, res) {
+    Profile.findById(req.user.profile)
+        .then(profile => {
+            profile.faction.push(req.params.id)
+            profile.save()
+                .then(() => {
+                    res.redirect(`/profiles/${req.params.id}`)
+                })
+        })
+        .catch((err) => {
+            console.log(err)
+            res.redirect('/')
+        })
+}
+
+function heelTurn(req, res) {
+    Profile.findById(req.user.profile)
+        .then(profile => {
+            profile.faction.remove({ _id: req.params.id })
+            profile.save()
+                .then(() => {
+                    res.redirect(`/profiles/${req.params.id}`)
+                })
+        })
+        .catch(err => {
+            console.log(err)
+            res.redirect('/')
         })
 }
 
@@ -72,6 +140,10 @@ module.exports = {
     index,
     show,
     deleteBout,
+    update,
+    edit,
+    follow,
+    heelTurn
     // isAdmin,
     // addFaction
 }

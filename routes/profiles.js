@@ -4,7 +4,9 @@ var profilesCtrl = require('../controllers/profiles');
 router.get('/', isLoggedIn, profilesCtrl.index);
 router.get('/:id', isLoggedIn, profilesCtrl.show);
 router.delete('/boutList/:id', isLoggedIn, profilesCtrl.deleteBout)
-    // router.patch("/:id/faction", isLoggedIn, profilesCtrl.addFaction)
+router.get("/:id", isLoggedIn, profilesCtrl.edit)
+router.patch("/:id/faction", isLoggedIn, profilesCtrl.follow)
+router.patch("/:id/heelTurn", isLoggedIn, profilesCtrl.heelTurn)
 
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) return next();
