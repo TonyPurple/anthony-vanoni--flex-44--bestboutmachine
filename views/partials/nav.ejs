@@ -22,6 +22,7 @@
                                 <% } %>
                                     <% if (user) { %>
                                         <a class="navbar-item button is-light is-inverted is-rounded" href="/profiles/<%= user.profile._id %>">View Profile</a>
+                                        <a class="navbar-item button is-light is-inverted is-rounded" href="/profiles">View Users</a>
                                         <a class="navbar-item button is-light is-inverted is-rounded" href="/auth/logout">Logout</a>
                                         <% } else { %>
                                             <div class="navbar-item">

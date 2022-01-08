@@ -5,8 +5,8 @@ const profileSchema = new Schema({
     name: String,
     avatar: String,
     reviews: [{ type: Schema.Types.ObjectId, ref: "Review" }],
-    isAdmin: Boolean,
-    boutList: [{ type: Schema.Types.ObjectId, ref: "Match" }]
+    boutList: [{ type: Schema.Types.ObjectId, ref: "Match" }],
+    faction: [{ type: Schema.Types.ObjectId, ref: "Profile" }]
 }, {
     timestamps: true
 })

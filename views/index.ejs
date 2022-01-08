@@ -4,7 +4,7 @@
         <p class="subtitle">This website is made for everyone who casts their annual vote for pro wrestling's match of the year, can't remember all the matches they watched, and just chooses something from Wrestle Kingdom. You know how it goes.</p>
         <br>
         <!-- admin functionality -->
-        <% if (user?.profile._id == "61d23943f2c64a2367183a53") { %>
+        <% if (isAdmin === true) { %>
             <h1>Admin Control</h1>
             <% } %>
                 <% if (!user) { %>

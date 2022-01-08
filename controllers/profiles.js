@@ -1,24 +1,35 @@
 const Profile = require('../models/profile');
 const Match = require('../models/match')
 
+// function index(req, res) {
+//     Profile.findById(req.params.profileId)
+//         // .populate({
+//         //     path: 'reviews',
+//         //     // populate: {
+//         //     //     path: 'match'
+//         //     // }
+//         // })
+//         .then(profile => {
+//             res.render('profiles/show', {
+//                 title: 'User Profile',
+//                 profile,
+//                 user: req.user ? req.user : null
+//             })
+//         })
+//         .catch(err => {
+//             console.log(err)
+//             res.redirect(`/profiles/${req.user.profile}`)
+//         })
+// }
+
 function index(req, res) {
-    Profile.findById(req.params.profileId)
-        // .populate({
-        //     path: 'reviews',
-        //     // populate: {
-        //     //     path: 'match'
-        //     // }
-        // })
-        .then(profile => {
-            res.render('profiles/show', {
-                title: 'User Profile',
-                profile,
-                user: req.user ? req.user : null
+    Profile.find({})
+        .then(profiles => {
+            res.render("profiles/index", {
+                title: "User Profiles",
+                // user: req.user ? req.user : null,
+                profiles,
             })
-        })
-        .catch(err => {
-            console.log(err)
-            res.redirect(`/profiles/${req.user.profile}`)
         })
 }
 
@@ -48,8 +59,19 @@ function deleteBout(req, res) {
         })
 }
 
+// function isAdmin(req, res) {
+//     if (user.profile._id == "61d23943f2c64a2367183a53") {
+//         isAdmin === true
+//     } else
+//         isAdmin === false
+// }
+
+// function addFaction()
+
 module.exports = {
     index,
     show,
-    deleteBout
-};
+    deleteBout,
+    // isAdmin,
+    // addFaction
+}

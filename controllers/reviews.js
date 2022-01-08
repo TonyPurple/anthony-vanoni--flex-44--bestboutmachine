@@ -19,15 +19,26 @@ function create(req, res) {
                     res.redirect(`/matches/${match._id}`);
                 })
         })
+        .catch(err => {
+            console.log(err)
+            res.redirect('/')
+        })
 }
 
 // function deleteReview(req, res) {
 //     Match.findById(req.params.id)
+//         .populate("reviews")
 //         .then(match => {
-//             review.remove({ _id: req.params.id })
-//             match.save(function(err, reviews) {
-//                 res.redirect(`/matches/${req.params._id}`, { reviews })
-//             })
+//             match.reviews.findById(req.params.reviews._id)
+//             match.reviews.remove(req.body);
+//             match.save()
+//                 .then(() => {
+//                     res.redirect(`/matches/${req.params._id}`)
+//                 })
+//         })
+//         .catch(err => {
+//             console.log(err)
+//             res.redirect('/')
 //         })
 // }
 

@@ -1,8 +1,7 @@
 var router = require('express').Router();
+const indexCtrl = require('../controllers/index')
 
 /* GET home page. */
-router.get('/', function(req, res) {
-    res.render('index', { title: 'Best Bout Machine', user: req.user ? req.user : null })
-})
+router.get('/', indexCtrl.index);
 
 module.exports = router;
