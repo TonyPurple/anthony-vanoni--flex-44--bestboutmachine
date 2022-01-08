@@ -7,61 +7,72 @@
             <% } %>
                 <% if (!profile._id.equals(userProfile._id) && userProfile.faction?.includes(profile._id)) { %>
                     <form action="/profiles/<%= profile._id %>/heelturn?_method=PATCH" method="POST">
-                        <button type="submit">Unfollow</button>
+                        <button class="card-footer-item" type="submit">Unfollow</button>
                     </form>
                     <% } %>
-                        <% if (profile.faction.length) { %>
-                            <h1>
-                                <%= profile.name %>'s Faction Members
-                            </h1>
-                            <% profile.faction.forEach(faction => {  %>
-                                <a href="/profiles/<%= faction._id %>">
-                                    <% if (faction.avatar) { %>
-                                        <img src="<%= faction.avatar %>" alt="<%= faction.name %>'s avatar" />
-                                </a>
-                                <p>
-                                    <%= faction.name %>
-                                </p>
-                                <% } %>
-                                    <% }); %>
-                                        <% } else { %>
-                                            <h2>No Friends Yet</h2>
-                                            <% } %>
-                                                <h1>
-                                                    <%= profile.name %>'s Best Bout List
-                                                </h1>
+                        <h1 class="title is-4">
+                            <%= profile.name %>'s Best Bout List
+                        </h1>
 
-                                                <% profile.boutList.forEach((boutList) => { %>
-                                                    <div class="card">
-                                                        <div class="card-content">
-                                                            <p class="title is-4 has-text-link">
-                                                                <%= boutList.wrestlers %>
-                                                            </p>
-                                                            <p class="subtitle is-6 has-text-black-bis">
-                                                                <%= boutList.promotion %>
-                                                            </p>
-                                                            <div class="content has-text-black-bis">
-                                                                <%= boutList.event %>,
-                                                                    <%= boutList.date.toLocaleDateString() %>,
-                                                                        <%= boutList.matchType %>,
-                                                                            <%= boutList.result %>
-                                                            </div>
-                                                            <footer class="card-footer">
-                                                                <div class="field is-grouped">
-                                                                    <p class="control">
-                                                                        <form action="/matches/<%= boutList._id %>/edit" method="GET">
-                                                                            <button class="card-footer-item" type="submit">Edit Match</button>
-                                                                        </form>
-                                                                    </p>
-                                                                    <p class="control">
-                                                                        <form action="/profiles/boutList/<%= boutList._id %>?_method=DELETE" method="POST">
-                                                                            <button class="card-footer-item" type="submit">Delete from Best Bout List</button>
-                                                                        </form>
-                                                                    </p>
-                                                                </div>
-                                                            </footer>
-                                                        </div>
+                        <% profile.boutList.forEach((boutList) => { %>
+                            <div class="card">
+                                <div class="card-content">
+                                    <p class="title is-4 has-text-link">
+                                        <%= boutList.wrestlers %>
+                                    </p>
+                                    <p class="subtitle is-6 has-text-black-bis">
+                                        <%= boutList.promotion %>
+                                    </p>
+                                    <div class="content has-text-black-bis">
+                                        <%= boutList.event %>,
+                                            <%= boutList.date.toLocaleDateString() %>,
+                                                <%= boutList.matchType %>,
+                                                    <%= boutList.result %>
+                                    </div>
+                                    <footer class="card-footer">
+                                        <div class="field is-grouped">
+                                            <p class="control">
+                                                <form action="/matches/<%= boutList._id %>/edit" method="GET">
+                                                    <button class="card-footer-item" type="submit">Edit Match</button>
+                                                </form>
+                                            </p>
+                                            <p class="control">
+                                                <form action="/profiles/boutList/<%= boutList._id %>?_method=DELETE" method="POST">
+                                                    <button class="card-footer-item" type="submit">Delete from Best Bout List</button>
+                                                </form>
+                                            </p>
+                                        </div>
+                                    </footer>
+                                </div>
+                            </div>
+                            <br>
+                            <%}) %>
+                                <% if (profile.faction.length) { %>
+                                    <h1 class="title is-4">
+                                        <%= profile.name %>'s Faction Members
+                                    </h1>
+                                    <% profile.faction.forEach(faction => {  %>
+                                        <section class="section-is-medium">
+                                            <article class="message">
+                                                <div class="message-header">
+                                                    <a href="/profiles/<%= faction._id %>">
+                                                        <% if (faction.avatar) { %>
+                                                            <img src="<%= faction.avatar %>" alt="<%= faction.name %>'s avatar" />
+                                                    </a>
+                                                </div>
+                                                <div class="message-body has-background-white-bis">
+                                                    <p class="subtitle">
+                                                        <%= faction.name %>
+                                                    </p>
+                                                </div>
+                                            </article>
+                                        </section>
+                                        <% } %>
+                                            <% }); %>
+                                                <% } else { %>
+                                                    <div class="message-body has-background-danger-light">
+                                                        <h2>Not Following Anyone Yet</h2>
                                                     </div>
-                                                    <br>
-                                                    <%}) %>
+                                                    <% } %>
+                                                        <br>
                                                         <%- include('./../partials/footer') %>

@@ -1,13 +1,15 @@
 require('dotenv').config();
-var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
+var createError = require('http-errors');
 var session = require('express-session');
-var passport = require('passport')
 var logger = require('morgan');
 require('./config/database');
+var passport = require('passport')
 require('./config/passport');
 var methodOverride = require('method-override');
+
+var app = express();
 
 var indexRouter = require('./routes/index');
 var authRouter = require('./routes/auth');
@@ -16,7 +18,6 @@ var reviewsRouter = require('./routes/reviews');
 var promotionsRouter = require('./routes/promotions')
 var profilesRouter = require('./routes/profiles')
 
-var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -32,6 +33,7 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+//pass user to view
 app.use(function(req, res, next) {
     res.locals.user = req.user;
     next();
