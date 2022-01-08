@@ -1,12 +1,12 @@
 <%- include('./../partials/html-head') %>
     <%- include('./../partials/nav') %>
 
-        <form class="field" action="/reviews/<%= review._id %>?_method=PATCH" method="POST">
+        <form class="field" action="/reviews/<%= review._id %>?_method=PUT" method="POST">
             <label class="label">Edit Review:</label>
-            <textarea class="textarea is-info is-large" name="content" placeholder="<%= review.content %>"></textarea>
+            <textarea class="textarea is-info is-large" name="content" value="<%= review.content %>"></textarea>
             <label class="label">Edit Star Rating:</label>
             <div class="select is-info is-rounded is-small">
-                <select name="rating" placeholder="<%= review.rating %>">
+                <select name="rating" value="<%= review.rating %>">
 <option value="0">0</option>
 <option value="1">1</option>
 <option value="2">2</option>

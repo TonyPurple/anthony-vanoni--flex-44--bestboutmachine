@@ -13,6 +13,9 @@
                     </div>
                     <div class="navbar-end">
                         <div class="navbar-item">
+                            <form action="/matches" method="GET">
+                                <input class="search" name="search" type="search" placeholder="Search Matches">
+                            </form>
                             <strong>hello,
                             <%= user ? user.profile.name : "mark" %></strong>
                             <% if (user?.profile.avatar) { %>

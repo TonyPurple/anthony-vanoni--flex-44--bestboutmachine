@@ -55,28 +55,47 @@ function edit(req, res) {
 
 
 function update(req, res) {
-    //     Match.findOne({ 'reviews._id': req.params.id }, function(err, match) {
-    //         // Find the comment subdoc using the id method on Mongoose arrays
-    //         // https://mongoosejs.com/docs/subdocs.html
-    //         const reviewSubdoc = match.reviews.id(req.params.id);
-    //         // Ensure that the comment was created by the logged in user
-    //         if (!reviewSubdoc.userId.equals(req.user._id)) return res.redirect(`/matches/${match._id}`);
-    //         // Update the text of the comment
-    //         reviewSubdoc.content = req.body.content;
-    //         reviewSubdoc.rating = req.body.rating;
-    //         match.save(function(err) {
-    //             res.redirect(`/matches/${match._id}`);
-    //         });
-    //     });
-    // }
-    Match.findByIdAndUpdate(req.params.id, req.body)
-        .then(match => {
-            res.redirect(`/matches/${match._id}`)
-        })
-        .catch(err => {
-            res.redirect(`/matches/${matches._id}/edit`)
-        })
+    function update(req, res) {
+        // Note the cool "dot" syntax to query on the property of a subdoc
+        Match.findOne({ 'reviews._id': req.params.id }, function(err, match) {
+            // Find the comment subdoc using the id method on Mongoose arrays
+            // https://mongoosejs.com/docs/subdocs.html
+            const reviewSubdoc = match.reviews.id(req.params.id);
+            // Ensure that the comment was created by the logged in user
+            if (!reviewSubdoc.userId.equals(req.user._id)) return res.redirect(`/matches/${match._id}`);
+            // Update the text of the comment
+            reviewSubdoc.content = req.body.content;
+            reviewSubdoc.rating = req.body.rating;
+            // Save the updated book
+            match.save(function(err) {
+                // Redirect back to the book's show view
+                res.redirect(`/matches/${match._id}`);
+            });
+        });
+    }
 }
+//     Match.findOne({ 'reviews._id': req.params.id }, function(err, match) {
+//         // Find the comment subdoc using the id method on Mongoose arrays
+//         // https://mongoosejs.com/docs/subdocs.html
+//         const reviewSubdoc = match.reviews.id(req.params.id);
+//         // Ensure that the comment was created by the logged in user
+//         if (!reviewSubdoc.userId.equals(req.user._id)) return res.redirect(`/matches/${match._id}`);
+//         // Update the text of the comment
+//         reviewSubdoc.content = req.body.content;
+//         reviewSubdoc.rating = req.body.rating;
+//         match.save(function(err) {
+//             res.redirect(`/matches/${match._id}`);
+//         });
+//     });
+// }
+//     Match.findByIdAndUpdate(req.params.id, req.body)
+//         .then(match => {
+//             res.redirect(`/matches/${match._id}`)
+//         })
+//         .catch(err => {
+//             res.redirect(`/matches/${matches._id}/edit`)
+//         })
+// }
 
 module.exports = {
     create,
