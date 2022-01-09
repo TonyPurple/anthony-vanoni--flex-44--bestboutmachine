@@ -4,12 +4,14 @@ var path = require('path');
 var createError = require('http-errors');
 var session = require('express-session');
 var logger = require('morgan');
-require('./config/database');
 var passport = require('passport')
-require('./config/passport');
 var methodOverride = require('method-override');
 
 var app = express();
+
+require('./config/database');
+
+require('./config/passport');
 
 var indexRouter = require('./routes/index');
 var authRouter = require('./routes/auth');

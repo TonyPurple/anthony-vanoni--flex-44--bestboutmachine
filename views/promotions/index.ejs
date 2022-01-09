@@ -1,0 +1,27 @@
+<%- include('./../partials/html-head') %>
+    <%- include('./../partials/nav') %>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Country</th>
+                    <th>Promotion</th>
+                </tr>
+            </thead>
+            <% promotions.forEach(promotion => { %>
+                <tbody>
+                    <tr>
+                        <th>
+                            <%= promotion.country %>
+                        </th>
+                        <td>
+                            <a class="is-link" href="/promotions/<%= promotion._id %>">
+                                <%= promotion.name %>
+                            </a>
+                        </td>
+                        <% }) %>
+                    </tr>
+                </tbody>
+        </table>
+        <br>
+        <br>
+        <%- include('../partials/footer') %>

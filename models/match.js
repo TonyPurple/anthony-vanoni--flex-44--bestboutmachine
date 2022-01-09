@@ -11,18 +11,14 @@ const reviewSchema = new Schema({
 });
 
 const matchSchema = new mongoose.Schema({
-    promotion: {
-        type: String,
-    },
+    promotion: { type: String },
     event: {
         type: String,
     },
     date: {
         type: Date,
     },
-    wrestlers: {
-        type: String,
-    },
+    wrestler: { type: String },
     matchType: {
         type: String,
     },

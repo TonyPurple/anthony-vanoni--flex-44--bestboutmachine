@@ -19,10 +19,29 @@ function create(req, res) {
                     res.redirect(`/matches/${match._id}`);
                 })
         })
-        .catch(err => {
-            console.log(err)
-            res.redirect('/')
-        })
+}
+//         .catch(err => {
+//             console.log(err)
+//             res.redirect('/')
+//         })
+// }
+
+function deleteReview(req, res) {
+    // Note the cool "dot" syntax to query on the property of a subdoc
+    Match.findOne({ 'reviews._id': req.params.id }, function(err, match) {
+        // Find the comment subdoc using the id method on Mongoose arrays
+        // https://mongoosejs.com/docs/subdocs.html
+        const reviewSubdoc = match.reviews.id(req.params.id);
+        // Ensure that the comment was created by the logged in user
+        if (!reviewSubdoc.userId.equals(req.user._id)) return res.redirect(`/matches/${match._id}`);
+        // Remove the comment using the remove method of the subdoc
+        reviewSubdoc.remove();
+        // Save the updated book
+        match.save(function(err) {
+            // Redirect back to the book's show view
+            res.redirect(`/matches/${match._id}`);
+        });
+    });
 }
 
 // function deleteReview(req, res) {
@@ -101,5 +120,5 @@ module.exports = {
     create,
     edit,
     update,
-    // deleteReview
+    deleteReview
 };

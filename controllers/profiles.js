@@ -31,6 +31,9 @@ function index(req, res) {
                 profiles,
             })
         })
+        .catch(e => {
+            console.log(e)
+        })
 }
 
 //index boutList on profile view
@@ -38,7 +41,6 @@ function show(req, res) {
     Profile.findById(req.params.id)
         .populate('boutList')
         .populate('faction')
-        // .populate(req.user.profile._id.reviews)
         .then(profile => {
             Match.find({ nominatedBy: profile._id })
                 .then(matches => {

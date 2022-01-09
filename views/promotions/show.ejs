@@ -1,0 +1,16 @@
+<%- include('./../partials/html-head') %>
+    <%- include('./../partials/nav') %>
+        <% promotion.matches.forEach(promotion => { %>
+            <% promotion.roster.forEach(wrestler => { %>
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">
+                            <a class="is-link" href="/wrestlers/<%= wrestler._id %>">
+                                <%= promotion.matches %>
+                            </a>
+                        </h2>
+                    </div>
+                </div>
+                <% }) %>
+                    <% })%>
+                        <%- include('../partials/footer') %>
