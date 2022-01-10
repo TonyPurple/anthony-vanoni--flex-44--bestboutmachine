@@ -118,7 +118,7 @@
                                                                                                     <a class="button is-warning is-rounded" href="/reviews/<%= review.id %>/edit">Edit Review</a>
                                                                                                     <br>
                                                                                                     <td>
-                                                                                                        <form action="/reviews/<%= review._id %>?_method=DELETE" method="POST">
+                                                                                                        <form action="/matches/<%= match._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST">
                                                                                                             <button type="submit">DELETE</button>
                                                                                                         </form>
                                                                                                     </td>

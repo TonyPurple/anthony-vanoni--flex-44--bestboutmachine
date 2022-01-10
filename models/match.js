@@ -18,7 +18,7 @@ const matchSchema = new mongoose.Schema({
     date: {
         type: Date,
     },
-    wrestler: { type: String },
+    wrestlers: { type: String },
     matchType: {
         type: String,
     },

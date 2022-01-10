@@ -26,39 +26,38 @@ function create(req, res) {
 //         })
 // }
 
-function deleteReview(req, res) {
-    // Note the cool "dot" syntax to query on the property of a subdoc
-    Match.findOne({ 'reviews._id': req.params.id }, function(err, match) {
-        // Find the comment subdoc using the id method on Mongoose arrays
-        // https://mongoosejs.com/docs/subdocs.html
-        const reviewSubdoc = match.reviews.id(req.params.id);
-        // Ensure that the comment was created by the logged in user
-        if (!reviewSubdoc.userId.equals(req.user._id)) return res.redirect(`/matches/${match._id}`);
-        // Remove the comment using the remove method of the subdoc
-        reviewSubdoc.remove();
-        // Save the updated book
-        match.save(function(err) {
-            // Redirect back to the book's show view
-            res.redirect(`/matches/${match._id}`);
-        });
-    });
-}
-
 // function deleteReview(req, res) {
-//     Match.findById(req.params.matchId)
-//         .then((match => {
-//             match.reviews.findByIdAndDelete(req.params._id)
-//                 // match.reviews.remove(req.params._id);
-//             match.save()
-//                 .then(() => {
-//                     res.redirect(`/matches/${req.params._id}`)
-//                 });
-//         }))
-//         .catch(err => {
-//             console.log(err)
-//             res.redirect('/')
-//         })
+//     // Note the cool "dot" syntax to query on the property of a subdoc
+//     Match.findOne({ 'reviews._id': req.params.id }, function(err, match) {
+//         // Find the comment subdoc using the id method on Mongoose arrays
+//         // https://mongoosejs.com/docs/subdocs.html
+//         const reviewSubdoc = match.reviews.id(req.params.id);
+//         // Ensure that the comment was created by the logged in user
+//         if (!reviewSubdoc.userId.equals(req.user._id)) return res.redirect(`/matches/${match._id}`);
+//         // Remove the comment using the remove method of the subdoc
+//         reviewSubdoc.remove();
+//         // Save the updated book
+//         match.save(function(err) {
+//             // Redirect back to the book's show view
+//             res.redirect(`/matches/${match._id}`);
+//         });
+//     });
 // }
+
+function deleteReview(req, res) {
+    Match.findById(req.params.matchId)
+        .then(match => {
+            match.reviews.remove({ _id: req.params.reviewId })
+            match.save()
+                .then(() => {
+                    res.redirect(`/matches/${match._id}`)
+                })
+                .catch(err => {
+                    console.log(err)
+                    res.redirect('/')
+                })
+        })
+}
 
 function edit(req, res) {
     // Match.findOne({ 'reviews._id': req.params.id }, function(err, review) {

@@ -6,17 +6,13 @@
             <nav class="navbar" role="navigation" aria-label="main navigation">
                 <div class="navbar-brand">
                     <div class="navbar-start">
-                        <a class="navbar-item button is-dark is-outlined is-rounded" href="/">Best Bout Machine</a>
-                        <a class="navbar-item button is-light is-inverted is-rounded" href="/matches">Recent Nominations</a>
-                        <a class="navbar-item button is-light is-inverted is-rounded" href="/matches/new">Nominate a Match</a>
-                        <a class="navbar-item button is-light is-inverted is-rounded" href="/promotions/index">View Promotions</a>
-                        <a class="navbar-item button is-light is-inverted is-rounded" href="/promotions/new">ADD Promotion</a>
+                        <a class="navbar-item button is-dark is-outlined is-rounded is-small" href="/">Best Bout Machine</a>
+                        <a class="navbar-item button is-light is-inverted is-rounded is-small" href="/matches">Recent Nominations</a>
+                        <a class="navbar-item button is-light is-inverted is-rounded is-small" href="/matches/new">Nominate a Match</a>
+                        <a class="navbar-item button is-light is-inverted is-rounded is-small" href="/promotions/index">View Promotions</a>
                     </div>
                     <div class="navbar-end">
                         <div class="navbar-item">
-                            <form action="/matches/search" method="GET">
-                                <input class="search" name="search" type="search" placeholder="Search Matches">
-                            </form>
                             <strong>hello,
                             <%= user ? user.profile.name : "mark" %></strong>
                             <% if (user?.profile.avatar) { %>
@@ -25,14 +21,14 @@
                                 </div>
                                 <% } %>
                                     <% if (user) { %>
-                                        <a class="navbar-item button is-light is-inverted is-rounded" href="/profiles/<%= user.profile._id %>">View Profile</a>
-                                        <a class="navbar-item button is-light is-inverted is-rounded" href="/profiles">View Users</a>
-                                        <a class="navbar-item button is-light is-inverted is-rounded" href="/auth/logout">Logout</a>
+                                        <a class="navbar-item button is-light is-inverted is-rounded is-small" href="/profiles/<%= user.profile._id %>">View Profile</a>
+                                        <a class="navbar-item button is-light is-inverted is-rounded is-small" href="/profiles">View Users</a>
+                                        <a class="navbar-item button is-light is-inverted is-rounded is-small" href="/auth/logout">Logout</a>
                                         <% } else { %>
                                             <div class="navbar-item">
                                                 <img src="https://i.imgur.com/tNbIrh8s.jpg" height="28" width="28">
                                             </div>
-                                            <a class="navbar-item button is-dark is-outlined is-rounded" href="/auth/google">Sign In w/ Google</a>
+                                            <a class="navbar-item button is-dark is-outlined is-rounded is-small" href="/auth/google">Sign In w/ Google</a>
                                             <% } %>
                         </div>
                     </div>

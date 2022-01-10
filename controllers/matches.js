@@ -7,6 +7,10 @@ function index(req, res) {
         .then(matches => {
             res.render('matches/index', { title: 'Recently Nominated Matches', matches });
         })
+        .catch(err => {
+            console.log(err)
+            res.redirect('/')
+        })
 }
 
 function show(req, res) {
@@ -19,7 +23,11 @@ function show(req, res) {
 };
 
 function newMatch(req, res) {
-    res.render('matches/new', { title: 'Nominate a Match' });
+    res.render('matches/new', { title: 'Nominate a Match' })
+        .catch(err => {
+            console.log(err)
+            res.redirect('/')
+        })
 }
 
 function create(req, res) {
