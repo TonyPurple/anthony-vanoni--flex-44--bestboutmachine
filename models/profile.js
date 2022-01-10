@@ -7,7 +7,8 @@ const profileSchema = new Schema({
     bio: String,
     reviews: [{ type: Schema.Types.ObjectId, ref: "Review" }],
     boutList: [{ type: Schema.Types.ObjectId, ref: "Match" }],
-    faction: [{ type: Schema.Types.ObjectId, ref: "Profile" }]
+    faction: [{ type: Schema.Types.ObjectId, ref: "Profile" }],
+    posts: [{ type: Schema.Types.ObjectId, ref: 'Post' }]
 }, {
     timestamps: true
 })

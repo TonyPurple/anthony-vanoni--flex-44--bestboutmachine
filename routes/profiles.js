@@ -8,8 +8,10 @@ router.get('/:id', isLoggedIn, profilesCtrl.show);
 //delete match from bestBoutList
 router.delete('/boutList/:id', isLoggedIn, profilesCtrl.deleteBout)
     // handle new profile form being submitted
-router.post('/:id/bio', isLoggedIn, profilesCtrl.createBio);
+    // router.post('/profiles/:id/bio', isLoggedIn, profilesCtrl.createBio);
+router.post('/:id', isLoggedIn, profilesCtrl.createBio)
 router.get("/:id", isLoggedIn, profilesCtrl.edit)
+router.put('/:id/bio', isLoggedIn, profilesCtrl.update)
     //follow a profile i.e add them to your faction
 router.patch("/:id/faction", isLoggedIn, profilesCtrl.follow)
     // stop following a profile i.e. turn heel

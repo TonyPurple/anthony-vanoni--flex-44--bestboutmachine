@@ -60,18 +60,22 @@ function bestBout(req, res) {
     })
 }
 
-function search(req, res) {
-    // Make the query object to use with Match.find based upon
-    // if the user has submitted via a search form for a promotion name
-    let matchQuery = req.query.match.promotion ? { promotion: new RegExp(req.query.match.promotion, 'i') } : {};
-    Match.find(matchQuery, function(err, matches) {
-        // Why not reuse the matches/index template?
-        res.render('/matches/index', {
-            matches,
-            user: req.user,
-            promotionSearch: req.query.match.promotion // use to set content of search form
-        });
-    });
+// function search(req, res) {
+//     // Make the query object to use with Match.find based upon
+//     // if the user has submitted via a search form for a promotion name
+//     let matchQuery = req.query.match.promotion ? { promotion: new RegExp(req.query.match.promotion, 'i') } : {};
+//     Match.find(matchQuery, function(err, matches) {
+//         // Why not reuse the matches/index template?
+//         res.render('/matches/index', {
+//             matches,
+//             user: req.user,
+//             promotionSearch: req.query.match.promotion // use to set content of search form
+//         });
+//     });
+// }
+function matchSearch(req, res) {
+    console.log(req.body)
+    res.redirect("/")
 }
 
 module.exports = {
@@ -81,5 +85,5 @@ module.exports = {
     create,
     delete: deleteMatch,
     bestBout,
-    search
+    matchSearch
 };

@@ -13,7 +13,7 @@ router.post('/', isLoggedIn, matchesCtrl.create);
 router.get('/:id/profiles/', isLoggedIn, matchesCtrl.bestBout)
     // delete match from database
 router.delete('/:id', isLoggedIn, matchesCtrl.delete);
-router.get('/matches', isLoggedIn, matchesCtrl.search);
+router.post('/matchSearch', isLoggedIn, matchesCtrl.matchSearch);
 
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) return next();

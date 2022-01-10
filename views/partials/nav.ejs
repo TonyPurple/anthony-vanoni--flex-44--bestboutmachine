@@ -21,6 +21,10 @@
                                 </div>
                                 <% } %>
                                     <% if (user) { %>
+                                        <!-- <form action="/matches/matchSearch" method="POST">
+                                            <input name="search" type="text" placeholder="Search All Matches">
+                                            <button type="search">Get Matches</button>
+                                        </form> -->
                                         <a class="navbar-item button is-light is-inverted is-rounded is-small" href="/profiles/<%= user.profile._id %>">View Profile</a>
                                         <a class="navbar-item button is-light is-inverted is-rounded is-small" href="/profiles">View Users</a>
                                         <a class="navbar-item button is-light is-inverted is-rounded is-small" href="/auth/logout">Logout</a>

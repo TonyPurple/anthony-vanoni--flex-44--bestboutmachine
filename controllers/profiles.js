@@ -39,12 +39,14 @@ function index(req, res) {
 
 //index boutList on profile view
 function show(req, res) {
+    //find profile for user that was clicked
     Profile.findById(req.params.id)
         .populate('boutList')
         .populate('faction')
         .then(profile => {
             Match.find({ nominatedBy: profile._id })
                 .then(matches => {
+                    //find profile for current logged in user
                     Profile.findById(req.user.profile)
                         .then(userProfile => {
                             res.render('profiles/show', {
@@ -76,11 +78,29 @@ function deleteBout(req, res) {
         })
 }
 
+// function createBio(req, res) {
+//     Profile.findById(req.params.id, req.body)
+//     Profile.save()
+//         .then(profile => {
+//             res.redirect(`/profiles/${profile._id}`, bio);
+//         })
+// }
+
 function createBio(req, res) {
-    Profile.findById(req.params.id, req.body)
-    Profile.save()
+    Profile.findById(req.params.id)
         .then(profile => {
-            res.redirect(`/profiles/${profile._id}`);
+            req.body.bio = req.body;
+            profile.save()
+                // .then(() => {
+                //     Profile.findById(req.user.profile._id)
+                //         .then(profile => {
+                //             profile.reviews.push(req.body)
+                //             profile.save()
+                //         })
+                // })
+                .then(() => {
+                    res.redirect(`/profiles/${profile._id}`);
+                })
         })
 }
 

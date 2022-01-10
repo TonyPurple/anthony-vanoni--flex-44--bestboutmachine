@@ -45,17 +45,19 @@ function create(req, res) {
 // }
 
 function deleteReview(req, res) {
-    Match.findById(req.params.matchId)
+    Match.findById(req.params.id)
         .then(match => {
-            match.reviews.remove({ _id: req.params.reviewId })
-            match.save()
-                .then(() => {
-                    res.redirect(`/matches/${match._id}`)
-                })
-                .catch(err => {
-                    console.log(err)
-                    res.redirect('/')
-                })
+            if (review.revier.equals(req.user.profile.id)) {
+                match.reviews.remove({ _id: req.params._id })
+                match.save()
+                    .then(() => {
+                        res.redirect(`/matches/${match._id}`)
+                    })
+                    .catch(err => {
+                        console.log(err)
+                        res.redirect('/')
+                    })
+            }
         })
 }
 

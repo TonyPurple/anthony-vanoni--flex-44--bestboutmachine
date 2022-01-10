@@ -11,17 +11,17 @@
                     </form>
                     <% } %>
                         <% if (user.profile._id.toString() == profile._id) { %>
-                            <input type="text" name="bio" placeholder="Profile Bio">
-                            <form action="/profiles/<%= profile._id %>?_method=PUT" method="POST">
+                            <!-- <input type="text" name="bio" placeholder="Profile Bio">
+                            <form action="/profiles/<%#= profile._id %>/bio?_method=PUT" method="POST">
                                 <button type="submit" class="btn btn-info">Update Profile Bio</button>
                             </form>
                             <div class="message-body has-background-white-bis">
                                 <p class="subtitle">
-                                    <%= profile.bio %>
+                                    <%#= profile.bio %>
                                 </p>
-                            </div>
+                            </div> -->
                             <section class="section has-background-warning">
-                                <form class="field" method="POST" action="/profiles/<%= profile._id %>/bio">
+                                <form class="field" method="POST" name="bio" action="/profiles/<%= profile._id %>">
                                     <div class="field">
                                         <label class="label is-size-2">Create Bio:</label>
                                         <div class="control">
@@ -77,11 +77,13 @@
                                                                                         <button class="card-footer-item" type="submit">Edit Match</button>
                                                                                     </form>
                                                                                 </p>
-                                                                                <p class="control">
-                                                                                    <form action="/profiles/boutList/<%= boutList._id %>?_method=DELETE" method="POST">
-                                                                                        <button class="card-footer-item" type="submit">Delete from Best Bout List</button>
-                                                                                    </form>
-                                                                                </p>
+                                                                                <% if (user.profile._id.toString() == profile._id) { %>
+                                                                                    <p class="control">
+                                                                                        <form action="/profiles/boutList/<%= boutList._id %>?_method=DELETE" method="POST">
+                                                                                            <button class="card-footer-item" type="submit">Delete from Best Bout List</button>
+                                                                                        </form>
+                                                                                    </p>
+                                                                                    <% } %>
                                                                             </div>
                                                                         </footer>
                                                                     </div>
