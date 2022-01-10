@@ -10,7 +10,15 @@
                         <button class="card-footer-item" type="submit">Unfollow</button>
                     </form>
                     <% } %>
-
+                        <input type="text" name="bio" placeholder="Profile Bio">
+                        <form action="/profiles/<%= profile._id %>?_method=PUT" method="POST">
+                            <button type="submit" class="btn btn-info">Update Profile Bio</button>
+                        </form>
+                        <div class="message-body has-background-white-bis">
+                            <p class="subtitle">
+                                <%= profile.bio %>
+                            </p>
+                        </div>
                         <% if (profile.boutList.length) { %>
                             <h1 class="title is-4">
                                 <%= profile.name %>'s Best Bout List
