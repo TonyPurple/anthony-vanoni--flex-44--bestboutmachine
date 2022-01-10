@@ -26,12 +26,14 @@
                                                 <p class="subtitle">
                                                     <%= (total / match.reviews.length).toFixed(1) %>
                                                 </p>
-                                                <p class="subtitle">
-                                                    <form action="/matches/<%= match.id %>?_method=DELETE" method="POST">
-                                                        <button class="delete is-large"></button>
-                                                        </button>
-                                                    </form>
-                                                </p>
+                                                <% if (user.profile._id.toString() == match.nominatedBy) { %>
+                                                    <p class="subtitle">
+                                                        <form action="/matches/<%= match.id %>?_method=DELETE" method="POST">
+                                                            <button class="delete is-large"></button>
+                                                            </button>
+                                                        </form>
+                                                    </p>
+                                                    <% } %>
                                             </article>
                                         </div>
                                     </div>

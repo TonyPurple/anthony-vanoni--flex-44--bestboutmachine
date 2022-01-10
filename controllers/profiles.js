@@ -1,5 +1,6 @@
 const Profile = require('../models/profile');
-const Match = require('../models/match')
+const Match = require('../models/match');
+const profile = require('../models/profile');
 
 // function index(req, res) {
 //     Profile.findById(req.params.profileId)
@@ -62,6 +63,7 @@ function show(req, res) {
         })
 }
 
+//remove from best bout list
 function deleteBout(req, res) {
     Profile.findById(req.user.profile._id)
         .populate('boutList')
@@ -71,6 +73,14 @@ function deleteBout(req, res) {
             profile.save(function(err) {
                 res.redirect(`/profiles/${profile._id}`)
             })
+        })
+}
+
+function createBio(req, res) {
+    Profile.findById(req.params.id, req.body)
+    Profile.save()
+        .then(profile => {
+            res.redirect(`/profiles/${profile._id}`);
         })
 }
 
@@ -99,6 +109,7 @@ function update(req, res) {
         })
 }
 
+// add other user profile to faction for quick access to their info
 function follow(req, res) {
     Profile.findById(req.user.profile)
         .then(profile => {
@@ -114,6 +125,7 @@ function follow(req, res) {
         })
 }
 
+//stop following a profile
 function heelTurn(req, res) {
     Profile.findById(req.user.profile)
         .then(profile => {
@@ -145,7 +157,8 @@ module.exports = {
     update,
     edit,
     follow,
-    heelTurn
+    heelTurn,
+    createBio
     // isAdmin,
     // addFaction
 }
