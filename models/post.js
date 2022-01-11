@@ -5,6 +5,8 @@ const replySchema = new Schema({
     repliedBy: { type: Schema.Types.ObjectId, ref: 'Profile' },
     content: String,
     userName: String
+}, {
+    timestamps: true
 })
 
 const postSchema = new Schema({

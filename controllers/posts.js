@@ -57,11 +57,24 @@ function deletePost(req, res) {
     })
 }
 
+function deleteReply(req, res) {
+    // Note the cool "dot" syntax to query on the property of a subdoc
+    Post.findOne({ 'replies._id': req.params.id }, function(err, post) {
+        const replyDoc = post.replies.id(req.params.id);
+        replyDoc.remove({ _id: req.params.id })
+        post.save(function(err) {
+            // Redirect back to the match's show view
+            res.redirect(`/posts/${post._id}`);
+        });
+    });
+}
+
 
 module.exports = {
     index,
     create,
     show,
     reply,
-    delete: deletePost
+    delete: deletePost,
+    delete: deleteReply
 }

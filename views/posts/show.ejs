@@ -35,12 +35,15 @@
                             <p class="subtitle">
                                 <%= reply.content %>
                             </p>
-                            <br>
+                            <%= reply.createdAt.toLocaleDateString() %>
+                                <%= reply.createdAt.toLocaleTimeString() %>
+                                    <br>
+                    </article>
 
-                            <% }) %>
-                                <% } else { %>
-                                    <div class="message-body has-background-danger-light">No Replies Yet</div>
-                                    <% } %>
+                    <% }) %>
+                        <% } else { %>
+                            <div class="message-body has-background-danger-light">No Replies Yet</div>
+                            <% } %>
                 </section>
                 <br>
                 </div>

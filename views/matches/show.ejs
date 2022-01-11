@@ -72,6 +72,7 @@
                                     <div class="message-header">
                                         <h1>
                                             <%= review.createdAt.toLocaleDateString() %>
+                                                <%= review.createdAt.toLocaleTimeString() %>
                                         </h1>
                                     </div>
                                     <div class="message-body has-background-white-bis">
@@ -115,14 +116,14 @@
                                                                                             <% } %>
                                                                                                 <%= review.userName %>
                                                                                                     <br>
+                                                                                                    <br>
                                                                                                     <% if (user.profile._id.toString() == review.reviewer) { %>
                                                                                                         <a class="button is-warning is-rounded" href="/reviews/<%= review.id %>/edit">Edit Review</a>
                                                                                                         <br>
-                                                                                                        <td>
-                                                                                                            <form action="/matches/<%= match._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST">
-                                                                                                                <button type="submit">DELETE</button>
-                                                                                                            </form>
-                                                                                                        </td>
+                                                                                                        <br>
+                                                                                                        <form action="/<%= match._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST">
+                                                                                                            <button class="delete is-large" type="submit"></button>
+                                                                                                        </form>
                                                                                                         <% } %>
                                     </div>
                                 </article>
