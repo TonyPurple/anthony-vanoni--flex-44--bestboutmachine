@@ -151,7 +151,7 @@ function follow(req, res) {
 }
 
 //stop following a profile
-function heelTurn(req, res) {
+function unfollow(req, res) {
     Profile.findById(req.user.profile)
         .then(profile => {
             profile.faction.remove({ _id: req.params.id })
@@ -182,7 +182,7 @@ module.exports = {
     update,
     // edit,
     follow,
-    heelTurn,
+    unfollow,
     // createBio
     // isAdmin,
     // addFaction

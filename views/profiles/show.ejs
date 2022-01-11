@@ -2,12 +2,12 @@
     <%- include('./../partials/nav') %>
         <% if(!profile._id.equals(userProfile._id) && !userProfile.faction?.includes(profile._id)) { %>
             <form action="/profiles/<%= profile._id %>/faction?_method=PATCH" method="POST">
-                <button type="submit">Follow</button>
+                <button class="card-footer-item" type="submit">Add to Faction</button>
             </form>
             <% } %>
                 <% if (!profile._id.equals(userProfile._id) && userProfile.faction?.includes(profile._id)) { %>
                     <form action="/profiles/<%= profile._id %>/heelturn?_method=PATCH" method="POST">
-                        <button class="card-footer-item" type="submit">Unfollow</button>
+                        <button class="card-footer-item" type="submit">Turn Heel</button>
                     </form>
                     <% } %>
                         <% if (user.profile._id.toString() == profile._id) { %>

@@ -87,6 +87,7 @@ function update(req, res) {
             reviewSubdoc.content = req.body.content;
             reviewSubdoc.rating = req.body.rating;
             // Save the updated book
+            console.log(review)
             match.save(function(err) {
                 // Redirect back to the book's show view
                 res.redirect(`/matches/${match._id}`);
