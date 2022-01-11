@@ -1,0 +1,57 @@
+<%- include('./../partials/html-head') %>
+    <%- include('./../partials/nav') %>
+
+        <section class="section has-background-warning">
+            <form class="field" method="POST" action="/posts">
+                <div class="field">
+                    <label class="label is-size-2">What do you want to discuss?</label>
+                    <div class="control">
+                        <input class="input is-info is-rounded" type="text" name="title">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label is-size-2">Cut your promo here:</label>
+                    <div class="control">
+                        <textarea class="textarea is-info is-large" name="content"></textarea>
+                    </div>
+                </div>
+                <input class="button is-dark is-rounded" type="submit" value="Add Post">
+            </form>
+        </section>
+        <br>
+
+        <% if (posts) { %>
+            <% posts.forEach(function(post) { %>
+                <section class="section-is-medium">
+                    <article class="message">
+                        <div class="message-header">
+
+                            <a class="button is-link is-small is-rounded" href="/posts/<%= post._id %>">
+                                <%= post.title %>
+                            </a>
+                        </div>
+                        <div class="message-body has-background-white-bis">
+                            <p class="subtitle">
+                                <%= post.content %>
+                            </p>
+                            <%= post.postedBy.name %>
+                                <br>
+                                <%# if (user.profile._id.toString() == post.postedBy) { %>
+                                    <a class="button is-warning is-rounded" href="/posts/<%= post.id %>/edit">Edit Post</a>
+                                    <br>
+                                    <form action="/posts/<%= post._id %>?_method=DELETE" method="POST">
+                                        <button type="submit">DELETE</button>
+                                    </form>
+                        </div>
+                    </article>
+                    <br>
+                    <%# } %>
+                        <% }) %>
+                            <% } else { %>
+                                <div class="message-body has-background-danger-light">No Posts Yet</div>
+                                <% } %>
+                </section>
+                <br>
+                </div>
+
+                <%- include('./../partials/footer') %>

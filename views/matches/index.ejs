@@ -57,12 +57,14 @@
                                                     </p>
                                                     <p class="subtitle"><a class="button is-link is-small is-rounded" href="/matches/<%= match._id %>">DETAILS</a></p>
                                                     <p class="subtitle">No Ratings Yet</p>
-                                                    <p class="subtitle">
-                                                        <form action="/matches/<%= match.id %>?_method=DELETE" method="POST">
-                                                            <button class="delete is-large"></button>
-                                                            </button>
-                                                        </form>
-                                                    </p>
+                                                    <% if (user.profile._id.toString() == match.nominatedBy) { %>
+                                                        <p class="subtitle">
+                                                            <form action="/matches/<%= match.id %>?_method=DELETE" method="POST">
+                                                                <button class="delete is-large"></button>
+                                                                </button>
+                                                            </form>
+                                                        </p>
+                                                        <% } %>
                                                 </article>
                                             </div>
                                         </div>
