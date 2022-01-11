@@ -36,20 +36,21 @@
                             </p>
                             <%= post.postedBy.name %>
                                 <br>
-                                <%# if (user.profile._id.toString() == post.postedBy) { %>
+                                <%# if (user.profile._id.toString() == profile._id) { %>
                                     <a class="button is-warning is-rounded" href="/posts/<%= post.id %>/edit">Edit Post</a>
                                     <br>
                                     <form action="/posts/<%= post._id %>?_method=DELETE" method="POST">
                                         <button type="submit">DELETE</button>
                                     </form>
                         </div>
+                        <%# } %>
                     </article>
+
                     <br>
-                    <%# } %>
-                        <% }) %>
-                            <% } else { %>
-                                <div class="message-body has-background-danger-light">No Posts Yet</div>
-                                <% } %>
+                    <% }) %>
+                        <% } else { %>
+                            <div class="message-body has-background-danger-light">No Posts Yet</div>
+                            <% } %>
                 </section>
                 <br>
                 </div>

@@ -51,9 +51,17 @@ function reply(req, res) {
         })
 }
 
+function deletePost(req, res) {
+    Post.findByIdAndDelete(req.params.id, function(err, post) {
+        res.redirect('/posts')
+    })
+}
+
+
 module.exports = {
     index,
     create,
     show,
-    reply
+    reply,
+    delete: deletePost
 }

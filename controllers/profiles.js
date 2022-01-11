@@ -1,6 +1,5 @@
 const Profile = require('../models/profile');
 const Match = require('../models/match');
-const profile = require('../models/profile');
 
 // function index(req, res) {
 //     Profile.findById(req.params.profileId)
@@ -78,6 +77,12 @@ function deleteBout(req, res) {
         })
 }
 
+function update(req, res) {
+    Profile.findByIdAndUpdate(req.params.id, req.body, function(error, profile) {
+        res.redirect(`/profiles/${profile._id}`)
+    })
+}
+
 // function createBio(req, res) {
 //     Profile.findById(req.params.id, req.body)
 //     Profile.save()
@@ -86,48 +91,48 @@ function deleteBout(req, res) {
 //         })
 // }
 
-function createBio(req, res) {
-    Profile.findById(req.params.id)
-        .then(profile => {
-            req.body.bio = req.body;
-            profile.save()
-                // .then(() => {
-                //     Profile.findById(req.user.profile._id)
-                //         .then(profile => {
-                //             profile.reviews.push(req.body)
-                //             profile.save()
-                //         })
-                // })
-                .then(() => {
-                    res.redirect(`/profiles/${profile._id}`);
-                })
-        })
-}
+// function createBio(req, res) {
+//     Profile.findById(req.params.id)
+//         .then(profile => {
+//             req.body.bio = req.body;
+//             profile.save()
+//                 // .then(() => {
+//                 //     Profile.findById(req.user.profile._id)
+//                 //         .then(profile => {
+//                 //             profile.reviews.push(req.body)
+//                 //             profile.save()
+//                 //         })
+//                 // })
+//                 .then(() => {
+//                     res.redirect(`/profiles/${profile._id}`);
+//                 })
+//         })
+// }
 
-function edit(req, res) {
-    Profile.findById(req.params.id)
-        .then(profile => {
-            res.render("profiles/edit", {
-                title: `Repackaging ${profile.name}'s gimmick`,
-                profile
-            })
-        })
-        .catch(err => {
-            console.log(err)
-            res.redirect("/")
-        })
-}
+// function edit(req, res) {
+//     Profile.findById(req.params.id)
+//         .then(profile => {
+//             res.render("profiles/edit", {
+//                 title: `Repackaging ${profile.name}'s gimmick`,
+//                 profile
+//             })
+//         })
+//         .catch(err => {
+//             console.log(err)
+//             res.redirect("/")
+//         })
+// }
 
-function update(req, res) {
-    Profile.findByIdAndUpdate(req.params.id, req.body)
-        .then(profile => {
-            res.redirect(`/profiles/${profile._id}`)
-        })
-        .catch(err => {
-            console.log(err)
-            res.redirect("/")
-        })
-}
+// function update(req, res) {
+//     Profile.findByIdAndUpdate(req.params.id, req.body)
+//         .then(profile => {
+//             res.redirect(`/profiles/${profile._id}`)
+//         })
+//         .catch(err => {
+//             console.log(err)
+//             res.redirect("/")
+//         })
+// }
 
 // add other user profile to faction for quick access to their info
 function follow(req, res) {
@@ -175,10 +180,10 @@ module.exports = {
     show,
     deleteBout,
     update,
-    edit,
+    // edit,
     follow,
     heelTurn,
-    createBio
+    // createBio
     // isAdmin,
     // addFaction
 }
