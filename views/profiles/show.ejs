@@ -4,11 +4,13 @@
             <form action="/profiles/<%= profile._id %>/faction?_method=PATCH" method="POST">
                 <button class="card-footer-item" type="submit">Add to Faction</button>
             </form>
+            <br>
             <% } %>
                 <% if (!profile._id.equals(userProfile._id) && userProfile.faction?.includes(profile._id)) { %>
                     <form action="/profiles/<%= profile._id %>/heelturn?_method=PATCH" method="POST">
                         <button class="card-footer-item" type="submit">Turn Heel</button>
                     </form>
+                    <br>
                     <% } %>
                         <% if (user.profile._id.toString() == profile._id) { %>
                             <!-- <input type="text" name="bio" placeholder="Profile Bio">
@@ -50,16 +52,20 @@
                                         </article>
                                     </section>
                                     <br>
-                                    <br>
                                     <% } else { %>
-                                        <p><br><br>
-                                            <%= profile.name %> does not have a Bio yet!</p>
+                                        <div class="message-body has-background-danger-light">
+                                            <h2>
+                                                <%= profile.name %> does not have a Bio yet!</h2>
+                                        </div>
+                                        <br>
                                         <% } %> %>
 
                                             <% if (profile.boutList.length) { %>
-                                                <h1 class="title is-4">
-                                                    <%= profile.name %>'s Best Bout List
-                                                </h1>
+                                                <div class="message-header">
+                                                    <h1>
+                                                        <%= profile.name %>'s Best Bout List
+                                                    </h1>
+                                                </div>
                                                 <% profile.boutList.forEach((boutList) => { %>
                                                     <div class="card">
                                                         <div class="card-content">
@@ -96,14 +102,19 @@
                                                     <br>
                                                     <%}) %>
                                                         <% } else { %>
-                                                            <p><br><br>
-                                                                <%= profile.name %> does not have a Best Bout List yet!</p>
+                                                            <div class="message-body has-background-danger-light">
+                                                                <h2>
+                                                                    <%= profile.name %> does not have a Best Bout List yet!</h2>
+                                                            </div>
+                                                            <br>
                                                             <% } %>
-                                                                <br>
                                                                 <% if (profile.faction.length) { %>
-                                                                    <h1 class="title is-4">
-                                                                        <%= profile.name %>'s Faction Members
-                                                                    </h1>
+                                                                    <div class="message-header">
+                                                                        <h1>
+                                                                            <%= profile.name %>'s Faction Members
+                                                                        </h1>
+                                                                    </div>
+                                                                    <br>
                                                                     <% profile.faction.forEach(faction => {  %>
                                                                         <section class="section-is-medium">
                                                                             <article class="message">
@@ -120,6 +131,7 @@
                                                                                 </div>
                                                                             </article>
                                                                         </section>
+                                                                        <br>
                                                                         <% } %>
                                                                             <% }); %>
                                                                                 <% } else { %>
