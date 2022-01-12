@@ -40,12 +40,12 @@
                                     <%= post.createdAt.toLocaleTimeString() %>
                                         <br>
                                         <br>
-                                        <%# if (user.profile._id.toString() == post.postedBy.name) { %>
+                                        <% if (user.profile._id.toString() == post.postedBy._id) { %>
                                             <form action="/posts/<%= post._id %>?_method=DELETE" method="POST">
                                                 <button class="delete is-large"></button>
                                             </form>
                         </div>
-                        <%# } %>
+                        <% } %>
                     </article>
 
                     <br>

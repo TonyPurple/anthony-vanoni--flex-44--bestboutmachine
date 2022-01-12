@@ -17,57 +17,59 @@
                     </h2>
                 </section>
             </div>
-            <form class="field" action="/posts/<%= post._id %>?_method=PUT" method="POST">
-                <label class="label">Update Promo:</label>
-                <div class="control">
-                    <textarea class="textarea is-info is-large" name="content"></textarea>
-                </div>
-                <br>
-                <div class="control">
-                    <input class="button is-link is-outlined is-rounded" type="submit" value="Update Promo">
-                </div>
-            </form>
-
-            <section class="section has-background-warning">
-                <form class="field" method="POST" name="reply" action="/posts/<%= post._id %>/replies">
-                    <div class="field">
-                        <label class="label is-size-2">How do you retort?:</label>
-                        <div class="control">
-                            <textarea class="textarea is-info is-large" name="content"></textarea>
-                        </div>
+            <% if (user.profile._id.toString() == post.postedBy._id) { %>
+                <form class="field" action="/posts/<%= post._id %>?_method=PUT" method="POST">
+                    <label class="label">Update Promo:</label>
+                    <div class="control">
+                        <textarea class="textarea is-info is-large" name="content"></textarea>
                     </div>
-                    <input class="button is-dark is-rounded" type="submit" value="Post Reply">
+                    <br>
+                    <div class="control">
+                        <input class="button is-link is-outlined is-rounded" type="submit" value="Update Promo">
+                    </div>
                 </form>
-            </section>
-            <br>
+                <% } %>
 
-            <% if (post.replies.length) { %>
-                <% post.replies.forEach(function(reply) { %>
-                    <section class="section-is-medium">
-                        <article class="message">
-                            <div class="message-header">
-
-                                <%= reply.repliedBy.name %>
+                    <section class="section has-background-warning">
+                        <form class="field" method="POST" name="reply" action="/posts/<%= post._id %>/replies">
+                            <div class="field">
+                                <label class="label is-size-2">How do you retort?:</label>
+                                <div class="control">
+                                    <textarea class="textarea is-info is-large" name="content"></textarea>
+                                </div>
                             </div>
-                            <div class="message-body has-background-white-bis">
-                                <p class="subtitle">
-                                    <%= reply.content %>
-                                </p>
-                                <%= reply.createdAt.toLocaleDateString() %>
-                                    <%= reply.createdAt.toLocaleTimeString() %>
-                                        <%# if (user.profile._id.toString() == reply.userName) { %>
-                                            <br>
-                                            <form action="/<%= post._id %>/replies/<%= reply._id %>?_method=DELETE" method="POST">
-                                                <button class="delete is-large"></button>
-                                            </form>
-                            </div>
-                            <%# } %>
-                        </article>
-                        <% }) %>
-                            <% } else { %>
-                                <div class="message-body has-background-danger-light">No Replies Yet</div>
+                            <input class="button is-dark is-rounded" type="submit" value="Post Reply">
+                        </form>
                     </section>
                     <br>
+
+                    <% if (post.replies.length) { %>
+                        <% post.replies.forEach(function(reply) { %>
+                            <section class="section-is-medium">
+                                <article class="message">
+                                    <div class="message-header">
+
+                                        <%= reply.repliedBy.name %>
+                                    </div>
+                                    <div class="message-body has-background-white-bis">
+                                        <p class="subtitle">
+                                            <%= reply.content %>
+                                        </p>
+                                        <%= reply.createdAt.toLocaleDateString() %>
+                                            <%= reply.createdAt.toLocaleTimeString() %>
+                                                <% if (user.profile._id.toString() == reply.repliedBy._id) { %>
+                                                    <br>
+                                                    <form action="/<%= post._id %>/replies/<%= reply._id %>?_method=DELETE" method="POST">
+                                                        <button class="delete is-large"></button>
+                                                    </form>
+                                    </div>
+                                    <% } %>
+                                </article>
+                                <% }) %>
+                                    <% } else { %>
+                                        <div class="message-body has-background-danger-light">No Replies Yet</div>
+                            </section>
+                            <br>
         </div>
         </div>
         <% } %>

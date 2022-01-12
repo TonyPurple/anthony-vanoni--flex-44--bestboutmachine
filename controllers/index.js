@@ -1,6 +1,6 @@
 const Match = require('../models/match')
 
-async function index(req, res) {
+function index(req, res) {
     Match.find({ 'reviews.rating': { $gt: 4 } })
         .sort({ _id: -1 })
         .limit(10)

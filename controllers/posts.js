@@ -41,7 +41,7 @@ function show(req, res) {
         })
         .then((post) => {
             //find profile for current logged in user
-            Profile.findById(req.user.profile)
+            Profile.findById(req.user.profile.id)
                 .then(profile => {
                     res.render('posts/show', {
                         title: 'Read and Reply to Promo',
