@@ -20,7 +20,11 @@ function show(req, res) {
         .then(match => {
             res.render('matches/show', { title: 'Match Details', match });
         })
-};
+        .catch(err => {
+            console.log(err)
+            res.redirect('/matches/index')
+        })
+}
 
 function newMatch(req, res) {
     res.render('matches/new', { title: 'Nominate a Match' })
@@ -35,29 +39,38 @@ function create(req, res) {
     req.body.userName = req.user.profile.name
     Match.create(req.body)
         .then((match) =>
-            res.redirect(`/matches/${match._id}`)
-        )
+            res.redirect(`/matches/${match._id}`))
+        .catch(err => {
+            console.log(err)
+            res.redirect('/matches/index')
+        })
 }
 
 function deleteMatch(req, res) {
     Match.findByIdAndDelete(req.params.id, function(err, match) {
         if (err) return res.redirect('/matches');
         res.redirect('/matches');
-    });
-};
+    })
+}
+
+
 
 function bestBout(req, res) {
     req.body.bestBoutedBy = req.user.profile._id
         // find profile we want to add match to
-    Profile.findById(req.user.profile._id, function(err, profile) {
-        // push the match obj id to that profile
-        profile.boutList.push(req.params.id)
-            // save 
-        profile.save(function(err) {
-            // redirect to profile/index view
+    Profile.findById(req.user.profile._id)
+        .then(profile => {
+            // push the match obj id to that profile
+            profile.boutList.push(req.params.id)
+                // save 
+            profile.save()
+                // redirect to profile/show view
             res.redirect(`/profiles/${profile._id}`)
         })
-    })
+        .catch(err => {
+            console.log(err)
+            res.redirect(`/matches/${match._id}`)
+        })
 }
 
 // function search(req, res) {
