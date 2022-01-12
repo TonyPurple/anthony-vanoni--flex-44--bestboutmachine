@@ -9,7 +9,7 @@ function index(req, res) {
             Profile.findById(req.user.profile)
                 .then(userProfile => {
                     res.render('posts/index', {
-                        title: 'Discussion Board',
+                        title: 'Promo Board',
                         posts: posts.reverse(),
                         userProfile,
                         user: req.user ? req.user : null,
@@ -22,8 +22,11 @@ function create(req, res) {
     req.body.postedBy = req.user.profile._id
     req.body.userName = req.user.profile.name
     Post.create(req.body)
-        .then(() => {
-            res.redirect('/posts')
+        .then(post => {
+            Profile.findById(req.user.profile._id)
+                .then(profile => {
+                    res.redirect('/posts')
+                })
         })
 }
 
@@ -41,7 +44,7 @@ function show(req, res) {
             Profile.findById(req.user.profile)
                 .then(profile => {
                     res.render('posts/show', {
-                        title: 'Read Full Post',
+                        title: 'Read and Reply to Promo',
                         post,
                         profile,
                         user: req.user ? req.user : null

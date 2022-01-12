@@ -27,7 +27,7 @@
                         <div class="message-header">
 
                             <a class="button is-link is-small is-rounded" href="/posts/<%= post._id %>">
-                                <%= post.title %>
+                                Click to read/reply to <%= post.title %>
                             </a>
                         </div>
                         <div class="message-body has-background-white-bis">
@@ -40,12 +40,12 @@
                                     <%= post.createdAt.toLocaleTimeString() %>
                                         <br>
                                         <br>
-                                        <% if (user.profile._id.toString() == post.userName) { %>
+                                        <%# if (user.profile._id.toString() == post.postedBy.name) { %>
                                             <form action="/posts/<%= post._id %>?_method=DELETE" method="POST">
                                                 <button class="delete is-large"></button>
                                             </form>
                         </div>
-                        <% } %>
+                        <%# } %>
                     </article>
 
                     <br>
