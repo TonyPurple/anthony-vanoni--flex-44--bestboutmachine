@@ -78,7 +78,7 @@ function deleteBout(req, res) {
 }
 
 function update(req, res) {
-    Profile.findByIdAndUpdate(req.params.id, req.body, function(error, profile) {
+    Profile.findByIdAndUpdate(req.params.id, req.body, function(err, profile) {
         res.redirect(`/profiles/${profile._id}`)
     })
 }

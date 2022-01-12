@@ -20,6 +20,7 @@ var reviewsRouter = require('./routes/reviews');
 var promotionsRouter = require('./routes/promotions')
 var profilesRouter = require('./routes/profiles')
 var postsRouter = require('./routes/posts')
+var repliesRouter = require('./routes/replies')
 
 
 // view engine setup
@@ -29,6 +30,8 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(methodOverride('_method'));
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
@@ -45,9 +48,6 @@ app.use(function(req, res, next) {
     next();
 });
 
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(methodOverride('_method'));
-
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use('/matches', matchesRouter);
@@ -55,6 +55,7 @@ app.use('/', reviewsRouter)
 app.use('/', promotionsRouter)
 app.use('/profiles', profilesRouter)
 app.use('/posts', postsRouter)
+app.use('/', repliesRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,51 +1,75 @@
 <%- include('./../partials/html-head') %>
     <%- include('./../partials/nav') %>
-        <h3 class="title">
-            <%= post.title %>
-        </h3>
-        <p class="subtitle">
-            <%= post.content %>
-        </p>
-        <h4>
-            <%= post.postedBy.name %>
-        </h4>
-
-        <section class="section has-background-warning">
-            <form class="field" method="POST" name="reply" action="/posts/<%= post._id %>">
-                <div class="field">
-                    <label class="label is-size-2">How do you retort?:</label>
-                    <div class="control">
-                        <textarea class="textarea is-info is-large" name="content"></textarea>
-                    </div>
-                </div>
-                <input class="button is-dark is-rounded" type="submit" value="Post Reply">
-            </form>
-        </section>
-        <br>
-
-        <% if (post.replies.length) { %>
-            <% post.replies.forEach(function(reply) { %>
-                <section class="section-is-medium">
-                    <article class="message">
-                        <div class="message-header">
-
-                            <%= reply.repliedBy.name %>
-                        </div>
-                        <div class="message-body has-background-white-bis">
-                            <p class="subtitle">
-                                <%= reply.content %>
-                            </p>
-                            <%= reply.createdAt.toLocaleDateString() %>
-                                <%= reply.createdAt.toLocaleTimeString() %>
-                                    <br>
-                    </article>
-
-                    <% }) %>
-                        <% } else { %>
-                            <div class="message-body has-background-danger-light">No Replies Yet</div>
-                            <% } %>
+        <div class="container">
+            <div class="notification is-white-bis">
+                <section class="section">
+                    <h1 class="title">Topic: </h1>
+                    <h2 class="subtitle has-background-white">
+                        <%= post.title %>
+                    </h2>
+                    <h1 class="title">Promo: </h1>
+                    <h2 class="subtitle has-background-white">
+                        <%= post.content %>
+                    </h2>
+                    <h1 class="title">Cut By: </h1>
+                    <h2 class="subtitle has-background-white">
+                        <%= post.postedBy.name %>
+                    </h2>
                 </section>
-                <br>
+            </div>
+            <form class="field" action="/posts/<%= post._id %>?_method=PUT" method="POST">
+                <label class="label">Update Promo:</label>
+                <div class="control">
+                    <input class="input is-info is-rounded" type="text" name="content">
                 </div>
+                <br>
+                <div class="control">
+                    <input class="button is-link is-outlined is-rounded" type="submit" value="Update Promo">
+                </div>
+            </form>
 
-                <%- include('./../partials/footer') %>
+            <section class="section has-background-warning">
+                <form class="field" method="POST" name="reply" action="/posts/<%= post._id %>/replies">
+                    <div class="field">
+                        <label class="label is-size-2">How do you retort?:</label>
+                        <div class="control">
+                            <textarea class="textarea is-info is-large" name="content"></textarea>
+                        </div>
+                    </div>
+                    <input class="button is-dark is-rounded" type="submit" value="Post Reply">
+                </form>
+            </section>
+            <br>
+
+            <% if (post.replies.length) { %>
+                <% post.replies.forEach(function(reply) { %>
+                    <section class="section-is-medium">
+                        <article class="message">
+                            <div class="message-header">
+
+                                <%= reply.repliedBy.name %>
+                            </div>
+                            <div class="message-body has-background-white-bis">
+                                <p class="subtitle">
+                                    <%= reply.content %>
+                                </p>
+                                <%= reply.createdAt.toLocaleDateString() %>
+                                    <%= reply.createdAt.toLocaleTimeString() %>
+                                        <%# if (user.profile._id.toString() == reply.userName) { %>
+                                            <br>
+                                            <form action="/<%= post._id %>/replies/<%= reply._id %>?_method=DELETE" method="POST">
+                                                <button class="delete is-large"></button>
+                                            </form>
+                            </div>
+                            <%# } %>
+                        </article>
+                        <% }) %>
+                            <% } else { %>
+                                <div class="message-body has-background-danger-light">No Replies Yet</div>
+                    </section>
+                    <br>
+        </div>
+        </div>
+        <% } %>
+
+            <%- include('./../partials/footer') %>

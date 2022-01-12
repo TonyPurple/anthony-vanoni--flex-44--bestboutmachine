@@ -40,24 +40,21 @@
                                     <%= post.createdAt.toLocaleTimeString() %>
                                         <br>
                                         <br>
-                                        <%# if (user.profile._id.toString() == profile._id) { %>
-                                            <a class="button is-warning is-rounded" href="/posts/<%= post.id %>/edit">Edit Post</a>
-                                            <br>
-                                            <br>
+                                        <% if (user.profile._id.toString() == post.userName) { %>
                                             <form action="/posts/<%= post._id %>?_method=DELETE" method="POST">
                                                 <button class="delete is-large"></button>
                                             </form>
                         </div>
-                        <%# } %>
+                        <% } %>
                     </article>
 
                     <br>
                     <% }) %>
                         <% } else { %>
                             <div class="message-body has-background-danger-light">No Posts Yet</div>
-                            <% } %>
                 </section>
                 <br>
                 </div>
+                <% } %>
 
-                <%- include('./../partials/footer') %>
+                    <%- include('./../partials/footer') %>
