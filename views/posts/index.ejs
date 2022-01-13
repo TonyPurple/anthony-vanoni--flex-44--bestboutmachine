@@ -20,7 +20,7 @@
         </section>
         <br>
 
-        <% if (posts) { %>
+        <% if (posts.length) { %>
             <% posts.forEach(function(post) { %>
                 <section class="section-is-medium">
                     <article class="message">
@@ -50,11 +50,11 @@
 
                     <br>
                     <% }) %>
-                        <% } else { %>
-                            <div class="message-body has-background-danger-light">No Posts Yet</div>
                 </section>
-                <br>
                 </div>
-                <% } %>
+                <% } else { %>
+                    <div class="message-body has-background-danger-light">No Posts Yet</div>
+                    <br>
+                    <% } %>
 
-                    <%- include('./../partials/footer') %>
+                        <%- include('./../partials/footer') %>
