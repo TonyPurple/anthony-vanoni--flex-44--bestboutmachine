@@ -13,15 +13,6 @@
                     <br>
                     <% } %>
                         <% if (user.profile._id.toString() == profile._id) { %>
-                            <!-- <input type="text" name="bio" placeholder="Profile Bio">
-                            <form action="/profiles/<%#= profile._id %>/bio?_method=PUT" method="POST">
-                                <button type="submit" class="btn btn-info">Update Profile Bio</button>
-                            </form>
-                            <div class="message-body has-background-white-bis">
-                                <p class="subtitle">
-                                    <%#= profile.bio %>
-                                </p>
-                            </div> -->
                             <section class="section has-background-warning">
                                 <form class="field" name="bio" action="/profiles/<%= profile._id %>?_method=PUT" method="POST">
                                     <div class="field">

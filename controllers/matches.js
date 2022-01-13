@@ -42,17 +42,20 @@ function create(req, res) {
             res.redirect(`/matches/${match._id}`))
         .catch(err => {
             console.log(err)
-            res.redirect('/matches/index')
+            res.redirect('/matches')
         })
 }
 
 function deleteMatch(req, res) {
-    Match.findByIdAndDelete(req.params.id, function(err, match) {
-        if (err) return res.redirect('/matches');
-        res.redirect('/matches');
-    })
+    Match.findByIdAndDelete(req.params.id)
+        .then(match => {
+            res.redirect('/matches');
+        })
+        .catch(err => {
+            console.log(err)
+            res.redirect('/matches')
+        })
 }
-
 
 
 function bestBout(req, res) {

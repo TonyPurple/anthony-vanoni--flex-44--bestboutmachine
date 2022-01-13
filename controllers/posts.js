@@ -16,6 +16,10 @@ function index(req, res) {
                     })
                 })
         })
+        .catch(err => {
+            console.log(err)
+            res.redirect('/')
+        })
 }
 
 function create(req, res) {
@@ -27,6 +31,10 @@ function create(req, res) {
                 .then(profile => {
                     res.redirect('/posts')
                 })
+        })
+        .catch(err => {
+            console.log(err)
+            res.redirect('/posts')
         })
 }
 
@@ -51,6 +59,10 @@ function show(req, res) {
                     })
                 })
         })
+        .catch(err => {
+            console.log(err)
+            res.redirect('/posts')
+        })
 }
 
 function update(req, res) {
@@ -59,35 +71,11 @@ function update(req, res) {
     })
 }
 
-// function reply(req, res) {
-//     Post.findById(req.params.id)
-//         .then((post) => {
-//             req.body.repliedBy = req.user.profile._id
-//             post.replies.push(req.body)
-//             post.save()
-//                 .then(() => {
-//                     res.redirect(`/posts/${req.params.id}`)
-//                 })
-//         })
-// }
-
 function deletePost(req, res) {
     Post.findByIdAndDelete(req.params.id, function(err, post) {
         res.redirect('/posts')
     })
 }
-
-// function deleteReply(req, res) {
-//     // Note the cool "dot" syntax to query on the property of a subdoc
-//     Post.findOne({ 'replies._id': req.params.id }, function(err, post) {
-//         const replyDoc = post.replies.id(req.params.id);
-//         replyDoc.remove({ _id: req.params.id })
-//         post.save(function(err) {
-//             // Redirect back to the post's show view
-//             res.redirect(`/posts/${post._id}`);
-//         });
-//     });
-// }
 
 
 module.exports = {

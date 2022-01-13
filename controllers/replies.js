@@ -14,6 +14,7 @@ function reply(req, res) {
         })
 }
 
+
 function deleteReply(req, res) {
     // Note the cool "dot" syntax to query on the property of a subdoc
     Post.findOne({ 'replies._id': req.params.id }, function(err, post) {
@@ -21,7 +22,7 @@ function deleteReply(req, res) {
         replyDoc.remove({ _id: req.params.id })
         post.save(function(err) {
             // Redirect back to the post's show view
-            res.redirect(`/posts/${post._id}`, userProfile, profile);
+            res.redirect(`/posts/${post._id}`);
         });
     });
 }

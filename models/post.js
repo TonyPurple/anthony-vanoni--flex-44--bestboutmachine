@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 
 const replySchema = new Schema({
     repliedBy: { type: Schema.Types.ObjectId, ref: 'Profile' },
-    content: String,
+    content: { type: String },
     userName: String
 }, {
     timestamps: true
@@ -11,7 +11,7 @@ const replySchema = new Schema({
 
 const postSchema = new Schema({
     title: String,
-    content: String,
+    content: { type: String, required: true },
     postedBy: { type: Schema.Types.ObjectId, ref: 'Profile' },
     replies: [replySchema],
     userName: String
