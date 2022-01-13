@@ -66,15 +66,28 @@ function show(req, res) {
 }
 
 function update(req, res) {
-    Post.findByIdAndUpdate(req.params.id, req.body, function(err, post) {
-        res.redirect('/posts')
-    })
+    Post.findByIdAndUpdate(req.params.id)
+        .then(post => {
+            post.update(req.body)
+                .then(() => {
+                    res.redirect(`/posts/${post._id}`)
+                })
+                .catch(err => {
+                    console.log(err)
+                    res.redirect('/posts')
+                })
+        })
 }
 
 function deletePost(req, res) {
-    Post.findByIdAndDelete(req.params.id, function(err, post) {
-        res.redirect('/posts')
-    })
+    Post.findByIdAndDelete(req.params.id)
+        .then(post => {
+            res.redirect('/posts')
+        })
+        .catch(err => {
+            console.log(err)
+            res.redirect('/posts')
+        })
 }
 
 
