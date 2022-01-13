@@ -56,62 +56,12 @@ function deleteBout(req, res) {
         })
 }
 
+
 function update(req, res) {
     Profile.findByIdAndUpdate(req.params.id, req.body, function(err, profile) {
         res.redirect(`/profiles/${profile._id}`)
     })
 }
-
-// function createBio(req, res) {
-//     Profile.findById(req.params.id, req.body)
-//     Profile.save()
-//         .then(profile => {
-//             res.redirect(`/profiles/${profile._id}`, bio);
-//         })
-// }
-
-// function createBio(req, res) {
-//     Profile.findById(req.params.id)
-//         .then(profile => {
-//             req.body.bio = req.body;
-//             profile.save()
-//                 // .then(() => {
-//                 //     Profile.findById(req.user.profile._id)
-//                 //         .then(profile => {
-//                 //             profile.reviews.push(req.body)
-//                 //             profile.save()
-//                 //         })
-//                 // })
-//                 .then(() => {
-//                     res.redirect(`/profiles/${profile._id}`);
-//                 })
-//         })
-// }
-
-// function edit(req, res) {
-//     Profile.findById(req.params.id)
-//         .then(profile => {
-//             res.render("profiles/edit", {
-//                 title: `Repackaging ${profile.name}'s gimmick`,
-//                 profile
-//             })
-//         })
-//         .catch(err => {
-//             console.log(err)
-//             res.redirect("/")
-//         })
-// }
-
-// function update(req, res) {
-//     Profile.findByIdAndUpdate(req.params.id, req.body)
-//         .then(profile => {
-//             res.redirect(`/profiles/${profile._id}`)
-//         })
-//         .catch(err => {
-//             console.log(err)
-//             res.redirect("/")
-//         })
-// }
 
 // add other user profile to faction for quick access to their info
 function follow(req, res) {
@@ -129,7 +79,7 @@ function follow(req, res) {
         })
 }
 
-//stop following a profile
+//stop following a profile i.e turn heel
 function unfollow(req, res) {
     Profile.findById(req.user.profile)
         .then(profile => {
@@ -145,24 +95,11 @@ function unfollow(req, res) {
         })
 }
 
-// function isAdmin(req, res) {
-//     if (user.profile._id == "61d23943f2c64a2367183a53") {
-//         isAdmin === true
-//     } else
-//         isAdmin === false
-// }
-
-// function addFaction()
-
 module.exports = {
     index,
     show,
     deleteBout,
     update,
-    // edit,
     follow,
     unfollow,
-    // createBio
-    // isAdmin,
-    // addFaction
 }

@@ -1,7 +1,7 @@
 <%- include('./../partials/html-head') %>
     <%- include('./../partials/nav') %>
 
-        <form class="field" action="/matches/:matchId/reviews/:reviewId?_method=PUT" method="POST">
+        <form class="field" action="/:id/reviews/:id?_method=PUT" method="POST">
             <label class="label">Edit Review:</label>
             <textarea class="textarea is-info is-large" name="content" value="<%= review.content %>"></textarea>
             <label class="label">Edit Star Rating:</label>
