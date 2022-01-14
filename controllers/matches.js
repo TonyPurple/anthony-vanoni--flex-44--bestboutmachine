@@ -1,5 +1,6 @@
 const Match = require('../models/match')
 const Profile = require('../models/profile');
+const Promotion = require('../models/promotion');
 
 function index(req, res) {
     Match.find({})
@@ -26,25 +27,41 @@ function show(req, res) {
         })
 }
 
+
 function newMatch(req, res) {
-    res.render('matches/new', { title: 'Nominate a Match' })
-        .catch(err => {
-            console.log(err)
-            res.redirect('/')
-        })
+    Match.find({}, function(err, matches) {
+        res.render('matches/new', {
+            title: 'Nominate a Match',
+            matches
+        });
+    })
 }
 
 function create(req, res) {
-    req.body.nominatedBy = req.user.profile._id
-    req.body.userName = req.user.profile.name
-    Match.create(req.body)
-        .then((match) =>
-            res.redirect(`/matches/${match._id}`))
+    const newPromotion = new Promotion({
+        name: req.body.promotion,
+    })
+    newPromotion.save()
+    const newMatch = new Match({
+        promotion: req.body.promotion,
+        event: req.body.event,
+        date: req.body.date,
+        wrestlers: req.body.wrestlers,
+        matchType: req.body.matchType,
+        result: req.body.result,
+        nominatedBy: req.user.profile._id,
+        userName: req.user.profile.name
+    })
+    newMatch.save()
+        .then((match) => {
+            res.redirect(`/matches/${match._id}`)
+        })
         .catch(err => {
             console.log(err)
             res.redirect('/matches')
         })
 }
+
 
 function deleteMatch(req, res) {
     Match.findByIdAndDelete(req.params.id)
@@ -76,30 +93,11 @@ function bestBout(req, res) {
         })
 }
 
-// function search(req, res) {
-//     // Make the query object to use with Match.find based upon
-//     // if the user has submitted via a search form for a promotion name
-//     let matchQuery = req.query.match.promotion ? { promotion: new RegExp(req.query.match.promotion, 'i') } : {};
-//     Match.find(matchQuery, function(err, matches) {
-//         // Why not reuse the matches/index template?
-//         res.render('/matches/index', {
-//             matches,
-//             user: req.user,
-//             promotionSearch: req.query.match.promotion // use to set content of search form
-//         });
-//     });
-// }
-function matchSearch(req, res) {
-    console.log(req.body)
-    res.redirect("/")
-}
-
 module.exports = {
     index,
     show,
     new: newMatch,
     create,
     delete: deleteMatch,
-    bestBout,
-    matchSearch
+    bestBout
 };

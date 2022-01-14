@@ -1,4 +1,5 @@
 const Promotion = require('../models/promotion');
+const Match = require('../models/match')
 
 function create(req, res) {
     Promotion.create(req.body, function(err, promotion) {
@@ -32,12 +33,16 @@ function index(req, res) {
 
 function show(req, res) {
     Promotion.findById(req.params.id)
-        .populate('matches')
-        .populate('roster')
-        .then(promotion => {
-            res.render('promotions/show', { title: 'Promotion Details', promotion });
-        })
-};
+        .populate(
+            'matches'
+        )
+        .then(promotion =>
+            Match.find({}).where('promotion').in(promotion.name)
+            .then(matches => {
+                res.render('promotions/show', { title: 'Promotion Details', promotion, matches });
+            })
+        )
+}
 
 module.exports = {
     new: newPromotion,

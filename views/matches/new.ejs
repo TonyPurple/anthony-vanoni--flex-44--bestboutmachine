@@ -1,5 +1,18 @@
 <%- include('./../partials/html-head') %>
     <%- include('./../partials/nav') %>
+        <div class="field">
+            <p>Please first ensure that the Match is not in the dropdown
+                <div class="control">
+                    <div class="select is-info is-rounded is-small">
+                        <select>
+<% matches.forEach(function(match) { %>
+  <option><%= match.wrestlers + match.date.toLocaleDateString() %></option>
+<% }) %>
+</select>
+                    </div>
+                </div>
+            </p>
+        </div>
         <form class="field" action="/matches" method="POST">
             <label class="label">Promotion:</label>
             <div class="control">
