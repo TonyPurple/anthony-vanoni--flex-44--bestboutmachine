@@ -6,7 +6,9 @@ function reply(req, res) {
         .then((post) => {
             req.body.repliedBy = req.user.profile._id
             req.body.userName = req.user.profile.name;
-            post.replies.push(req.body)
+            if (req.body.content === '') return res.redirect(`/posts/${req.params.id}`)
+            else
+                post.replies.push(req.body)
             post.save()
                 .then(() => {
                     res.redirect(`/posts/${req.params.id}`)

@@ -25,7 +25,9 @@ function index(req, res) {
 function create(req, res) {
     req.body.postedBy = req.user.profile._id
     req.body.userName = req.user.profile.name
-    Post.create(req.body)
+    if (req.body.content === '') return res.redirect('/posts')
+    else
+        Post.create(req.body)
         .then(post => {
             Profile.findById(req.user.profile._id)
                 .then(profile => {
@@ -68,7 +70,9 @@ function show(req, res) {
 function update(req, res) {
     Post.findByIdAndUpdate(req.params.id)
         .then(post => {
-            post.update(req.body)
+            if (req.body.content === '') return res.redirect(`/posts/${post._id}`)
+            else
+                post.update(req.body)
                 .then(() => {
                     res.redirect(`/posts/${post._id}`)
                 })

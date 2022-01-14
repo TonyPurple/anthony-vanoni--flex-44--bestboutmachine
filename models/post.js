@@ -3,14 +3,14 @@ const Schema = mongoose.Schema
 
 const replySchema = new Schema({
     repliedBy: { type: Schema.Types.ObjectId, ref: 'Profile' },
-    content: { type: String },
+    content: { type: String, required: true },
     userName: String
 }, {
     timestamps: true
 })
 
 const postSchema = new Schema({
-    title: String,
+    title: { type: String, required: true },
     content: { type: String, required: true },
     postedBy: { type: Schema.Types.ObjectId, ref: 'Profile' },
     replies: [replySchema],

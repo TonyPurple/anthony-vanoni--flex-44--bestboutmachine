@@ -1,8 +1,17 @@
 <%- include('./../partials/html-head') %>
     <%- include('./../partials/nav') %>
-        <div>Nominated Matches:</div>
+        <div class="message-header">Nominated Matches:</div>
+        <br>
         <%- matches.map(match => 
-        `<li><a href="/matches/${match._id}">${match.wrestlers} <small>${match.date.toLocaleDateString()}</small></li></a>`
+  `
+                                                    <div class="card">
+                                                        <div class="card-content">
+                                                            <li class="title is-4 has-text-link">
+                                                              <a href="/matches/${match._id}">${match.wrestlers} <small>${match.date.toLocaleDateString()}</small></a>
+                                                            </li>
+                                                            </div>
+                                                            </div>
+                                                            <br>`
       ).join('') %>
 
             <%- include('../partials/footer') %>

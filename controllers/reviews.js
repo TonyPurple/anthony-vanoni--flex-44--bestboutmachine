@@ -6,13 +6,16 @@ function create(req, res) {
         .then(match => {
             req.body.reviewer = req.user.profile._id;
             req.body.userName = req.user.profile.name;
-            match.reviews.push(req.body);
+            if (req.body.content === '') return res.redirect(`/matches/${match._id}`)
+            else
+                match.reviews.push(req.body);
             match.save()
                 .then(() => {
                     res.redirect(`/matches/${match._id}`);
                 })
         })
         .catch(err => {
+
             console.log(err)
             res.redirect(`/matches/${match._id}`)
         })

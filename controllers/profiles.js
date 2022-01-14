@@ -56,10 +56,12 @@ function deleteBout(req, res) {
         })
 }
 
-
+//create or update bio
 function update(req, res) {
     Profile.findByIdAndUpdate(req.params.id, req.body, function(err, profile) {
-        res.redirect(`/profiles/${profile._id}`)
+        if (req.body.content === '') return res.redirect(`/profiles/${profile._id}`)
+        else
+            res.redirect(`/profiles/${profile._id}`)
     })
 }
 

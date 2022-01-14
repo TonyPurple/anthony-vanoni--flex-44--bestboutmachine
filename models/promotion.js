@@ -13,9 +13,10 @@ const promotionSchema = new mongoose.Schema({
     }],
     country: {
         type: String,
+        required: true
     },
     roster: [{
-        type: String
+        type: String,
     }]
 }, {
     timestamps: true

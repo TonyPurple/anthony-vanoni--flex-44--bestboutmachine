@@ -2,27 +2,31 @@
     <%- include('./../partials/nav') %>
         <table class="table">
             <a class="button is-light is-inverted is-rounded" href="/promotions/new">ADD Promotion</a>
-            <thead>
-                <tr>
-                    <th>Country</th>
-                    <th>Promotion</th>
-                </tr>
-            </thead>
-            <% promotions.forEach(promotion => { %>
-                <tbody>
+            <br>
+            <h2 class="title is-4">Top Rated Matches Include:</h2>
+            <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+
+                <thead>
                     <tr>
-                        <th>
-                            <%= promotion.country %>
-                        </th>
-                        <td>
-                            <a class="is-link" href="/promotions/<%= promotion._id %>">
-                                <%= promotion.name %>
-                            </a>
-                        </td>
-                        <% }) %>
+                        <th>Country</th>
+                        <th>Promotion</th>
                     </tr>
-                </tbody>
-        </table>
-        <br>
-        <br>
-        <%- include('../partials/footer') %>
+                </thead>
+                <% promotions.forEach(promotion => { %>
+                    <tbody>
+                        <tr>
+                            <th>
+                                <%= promotion.country %>
+                            </th>
+                            <td>
+                                <a class="is-link" href="/promotions/<%= promotion._id %>">
+                                    <%= promotion.name %>
+                                </a>
+                            </td>
+                            <% }) %>
+                        </tr>
+                    </tbody>
+            </table>
+            <br>
+            <br>
+            <%- include('../partials/footer') %>

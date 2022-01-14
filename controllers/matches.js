@@ -50,7 +50,7 @@ function create(req, res) {
             res.redirect(`/matches/${match._id}`))
         .catch(err => {
             console.log(err)
-            res.redirect('/matches')
+            res.redirect('/matches/new')
         })
 }
 
