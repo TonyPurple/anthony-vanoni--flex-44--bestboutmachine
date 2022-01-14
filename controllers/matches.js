@@ -29,15 +29,17 @@ function show(req, res) {
 
 
 function newMatch(req, res) {
-    Match.find({}, function(err, matches) {
-        Promotion.find({}, function(err, promotions) {
-            res.render('matches/new', {
-                title: 'Nominate a Match',
-                matches,
-                promotions
-            });
+    Match.find({}).sort({ wrestlers: 'ascending' })
+        .then(matches => {
+            Promotion.find({}).sort({ name: 'ascending' })
+                .then(promotions => {
+                    res.render('matches/new', {
+                        title: 'Nominate a Match',
+                        matches,
+                        promotions
+                    });
+                })
         })
-    })
 }
 
 function create(req, res) {
