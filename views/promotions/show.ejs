@@ -2,7 +2,7 @@
     <%- include('./../partials/nav') %>
         <div>Nominated Matches:</div>
         <%- matches.map(match => 
-        `<a href="/matches/${match._id}">${match.wrestlers} <small>${match.date.toLocaleDateString()}</small></a>`
+        `<li><a href="/matches/${match._id}">${match.wrestlers} <small>${match.date.toLocaleDateString()}</small></li></a>`
       ).join('') %>
 
             <%- include('../partials/footer') %>

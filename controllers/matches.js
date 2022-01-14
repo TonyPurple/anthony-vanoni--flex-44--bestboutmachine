@@ -30,37 +30,29 @@ function show(req, res) {
 
 function newMatch(req, res) {
     Match.find({}, function(err, matches) {
-        res.render('matches/new', {
-            title: 'Nominate a Match',
-            matches
-        });
+        Promotion.find({}, function(err, promotions) {
+            res.render('matches/new', {
+                title: 'Nominate a Match',
+                matches,
+                promotions
+            });
+        })
     })
 }
 
 function create(req, res) {
-    const newPromotion = new Promotion({
-        name: req.body.promotion,
-    })
-    newPromotion.save()
-    const newMatch = new Match({
-        promotion: req.body.promotion,
-        event: req.body.event,
-        date: req.body.date,
-        wrestlers: req.body.wrestlers,
-        matchType: req.body.matchType,
-        result: req.body.result,
-        nominatedBy: req.user.profile._id,
-        userName: req.user.profile.name
-    })
-    newMatch.save()
-        .then((match) => {
-            res.redirect(`/matches/${match._id}`)
-        })
+    req.body.nominatedBy = req.user.profile._id
+    req.body.userName = req.user.profile.name
+    Match.create(req.body)
+        .then((match) =>
+            res.redirect(`/matches/${match._id}`))
         .catch(err => {
             console.log(err)
             res.redirect('/matches')
         })
 }
+
+
 
 
 function deleteMatch(req, res) {

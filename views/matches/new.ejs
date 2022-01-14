@@ -14,10 +14,12 @@
             </p>
         </div>
         <form class="field" action="/matches" method="POST">
-            <label class="label">Promotion:</label>
-            <div class="control">
-                <input class="input is-info is-rounded" type="text" name="promotion">
-            </div>
+            <label class="label">Promotion: <br><small>*If you do not see the promotion you wish to add, please create it <a href="/promotions/new">here</a>before proceeding</small></label>
+            <select class="select" name="promotion">
+                <% promotions.forEach(function(promotion) { %>
+                  <option><%= promotion.name %></option>
+                <% }) %>
+              </select>
             <label class="label">Event Name</label>
             <div class="control">
                 <input class="input is-info is-rounded" type="text" name="event">
