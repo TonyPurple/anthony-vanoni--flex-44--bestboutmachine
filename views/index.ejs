@@ -3,62 +3,58 @@
         <img id="index-img" src="https://i.imgur.com/spGV9et.jpg" alt="Pro Wrestling Bout">
         <p class="subtitle">This website is made for everyone who casts their annual vote for pro wrestling's match of the year, can't remember all the matches they watched, and just chooses something from Wrestle Kingdom. You know how it goes.</p>
         <br>
-        <!-- admin functionality -->
-        <% if (user?.profile._id == "61d23943f2c64a2367183a53") { %>
-            <h1>Admin Control</h1>
-            <% } %>
-                <% if (user) { %>
-                    <p class="subtitle">
-                        See match of the year candidates from around the world as chosen by you, the fans of pro wrestling.
-                    </p>
-                    <div class="control mb-4">
-                        <a href="/matches" class="button is-link is-rounded">View Recent Nominations</a>
-                        <a href="/matches/new" class="button is-link is-rounded">Nominate a Match</a>
-                    </div>
-                    <br>
-                    <h2 class="title is-4">Top Rated Matches Include:</h2>
-                    <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
-                        <thead>
-                            <tr>
-                                <th>Promotion</th>
-                                <th>Event</th>
-                                <th>Date</th>
-                                <th>Wrestlers</th>
-                                <th>Match Details</th>
-                                <th>Average Rating</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <% matches.forEach(function(match) { %>
-                                <% if (match.reviews.length) { %>
-                                    <% let total = 0 %>
-                                        <% match.reviews.forEach(function(review) { %>
-                                            <% total += review.rating %>
-                                                <% }); %>
-                                                    <tr>
-                                                        <td>
-                                                            <%= match.promotion %>
-                                                        </td>
-                                                        <td>
-                                                            <%= match.event %>
-                                                        </td>
-                                                        <td>
-                                                            <%- `${match.date.toLocaleDateString()}` %>
-                                                        </td>
-                                                        <td>
-                                                            <%= match.wrestlers %>
-                                                        </td>
-                                                        <td><a class="button is-info is-small is-link" href="/matches/<%= match._id %>">DETAILS</a>
-                                                        </td>
-                                                        <td><strong><%= (total / match.reviews.length).toFixed(1) %></strong>
-                                                        </td>
-                                                        <% } else { %>
-                                                            <td>No Ratings Yet</td>
-                                                            <% } %>
-                                                                <% }) %>
-                                                                    <% } else { %>
-                                                                        <h1 class="title is-4">Log in to see recent nominations</h1>
-                                                                        <% } %>
-                        </tbody>
-                    </table>
-                    <%- include('./partials/footer') %>
+        <% if (user) { %>
+            <p class="subtitle">
+                See match of the year candidates from around the world as chosen by you, the fans of pro wrestling.
+            </p>
+            <div class="control mb-4">
+                <a href="/matches" class="button is-link is-rounded">View Recent Nominations</a>
+                <a href="/matches/new" class="button is-link is-rounded">Nominate a Match</a>
+            </div>
+            <br>
+            <h2 class="title is-4">Top Rated Matches Include:</h2>
+            <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+                <thead>
+                    <tr>
+                        <th>Promotion</th>
+                        <th>Event</th>
+                        <th>Date</th>
+                        <th>Wrestlers</th>
+                        <th>Match Details</th>
+                        <th>Average Rating</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% matches.forEach(function(match) { %>
+                        <% if (match.reviews.length) { %>
+                            <% let total = 0 %>
+                                <% match.reviews.forEach(function(review) { %>
+                                    <% total += review.rating %>
+                                        <% }); %>
+                                            <tr>
+                                                <td>
+                                                    <%= match.promotion %>
+                                                </td>
+                                                <td>
+                                                    <%= match.event %>
+                                                </td>
+                                                <td>
+                                                    <%- `${match.date.toLocaleDateString()}` %>
+                                                </td>
+                                                <td>
+                                                    <%= match.wrestlers %>
+                                                </td>
+                                                <td><a class="button is-info is-small is-link" href="/matches/<%= match._id %>">DETAILS</a>
+                                                </td>
+                                                <td><strong><%= (total / match.reviews.length).toFixed(1) %></strong>
+                                                </td>
+                                                <% } else { %>
+                                                    <td>No Ratings Yet</td>
+                                                    <% } %>
+                                                        <% }) %>
+                                                            <% } else { %>
+                                                                <h1 class="title is-4">Log in to see recent nominations</h1>
+                                                                <% } %>
+                </tbody>
+            </table>
+            <%- include('./partials/footer') %>

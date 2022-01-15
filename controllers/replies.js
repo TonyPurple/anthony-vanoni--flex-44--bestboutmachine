@@ -13,6 +13,9 @@ function reply(req, res) {
                 .then(() => {
                     res.redirect(`/posts/${req.params.id}`)
                 })
+                .catch(e => {
+                    console.log(e)
+                })
         })
 }
 
@@ -23,10 +26,13 @@ function deleteReply(req, res) {
         const replyDoc = post.replies.id(req.params.id);
         replyDoc.remove({ _id: req.params.id })
         post.save(function(err) {
-            // Redirect back to the post's show view
-            res.redirect(`/posts/${post._id}`);
-        });
-    });
+                // Redirect back to the post's show view
+                res.redirect(`/posts/${post._id}`);
+            })
+            .catch(e => {
+                console.log(e)
+            })
+    })
 }
 
 module.exports = {

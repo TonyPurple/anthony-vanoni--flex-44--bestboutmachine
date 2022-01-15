@@ -2,6 +2,8 @@
     <%- include('./../partials/nav') %>
         <div class="message-header">Nominated Matches:</div>
         <br>
+        <a href="/matches/new" class="button is-link is-rounded">Nominate a Match</a>
+        <br><br>
         <%- matches.map(match => 
   `
                                                     <div class="card">

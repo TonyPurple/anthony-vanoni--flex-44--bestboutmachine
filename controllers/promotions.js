@@ -2,18 +2,25 @@ const Promotion = require('../models/promotion');
 const Match = require('../models/match')
 
 function create(req, res) {
-    Promotion.create(req.body, function(err, promotion) {
-        res.redirect('/promotions/new');
-    });
+    Promotion.create(req.body)
+        .then((promotion) =>
+            res.redirect(`/promotions/${promotion._id}`))
+        .catch(err => {
+            console.log(err)
+            res.redirect('/promotions/new')
+        })
 }
 
 function newPromotion(req, res) {
     Promotion.find({}, function(err, promotions) {
-        res.render('promotions/new', {
-            title: 'Add Promotion',
-            promotions
-        });
-    })
+            res.render('promotions/new', {
+                title: 'Add Promotion',
+                promotions
+            })
+        })
+        .catch(e => {
+            console.log(e)
+        })
 }
 
 function index(req, res) {
@@ -22,7 +29,6 @@ function index(req, res) {
         .then(promotions => {
             res.render("promotions/index", {
                 title: "Top Promotions",
-                // user: req.user ? req.user : null,
                 promotions,
             })
         })
@@ -42,6 +48,9 @@ function show(req, res) {
                 res.render('promotions/show', { title: 'Promotion Details', promotion, matches });
             })
         )
+        .catch(e => {
+            console.log(e)
+        })
 }
 
 module.exports = {

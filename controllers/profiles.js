@@ -6,7 +6,6 @@ function index(req, res) {
         .then(profiles => {
             res.render("profiles/index", {
                 title: "User Profiles",
-                // user: req.user ? req.user : null,
                 profiles,
             })
         })
@@ -56,13 +55,20 @@ function deleteBout(req, res) {
         })
 }
 
-//create or update bio
 function update(req, res) {
-    Profile.findByIdAndUpdate(req.params.id, req.body, function(err, profile) {
-        if (req.body.content === '') return res.redirect(`/profiles/${profile._id}`)
-        else
-            res.redirect(`/profiles/${profile._id}`)
-    })
+    Profile.findByIdAndUpdate(req.params.id)
+        .then(profile => {
+            if (req.body.bio === '') return res.redirect(`/profiles/${profile._id}`)
+            else
+                profile.update(req.body)
+                .then(() => {
+                    res.redirect(`/profiles/${profile._id}`)
+                })
+                .catch(err => {
+                    console.log(err)
+                    res.redirect(`/profiles/${profile._id}`)
+                })
+        })
 }
 
 // add other user profile to faction for quick access to their info
