@@ -2,8 +2,8 @@
     <%- include('./../partials/nav') %>
 
         <form class="field" action="/reviews/<%= reviews._id %>?_method=PUT" method="POST">
-            <label class="label">Edit Review:</label>
-            <textarea class="textarea is-info is-large" name="content" value="<%= reviews.content %>"></textarea>
+            <label class="label">Edit Review: (required)</label>
+            <textarea class="textarea is-info is-large" name="content" placeholder="<%= reviews.content %>"></textarea>
             <label class="label">Edit Star Rating:</label>
             <div class="select is-info is-rounded is-small">
                 <select name="rating" value="<%= reviews.rating %>">
