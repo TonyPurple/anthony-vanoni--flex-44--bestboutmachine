@@ -69,7 +69,7 @@ Main Controller
 
 ## Lessons Learned
 
-This was my first foray into working with a database that I designed. Despite putting a lot of thought into my models, even as I write this I still consider various changes that I might make. While data excites me, I now realize how difficult it is to develop applications from an architecture and data perspective. I believe that I left opportunities to maximize functionality on the table by collecting data in a simplified form.
+This was my first foray into working with a database that I designed. Despite putting a lot of thought into my models, even as I write this I still consider various changes that I might make. While data excites me, I now realize how difficult it is to develop applications from an architecture and data perspective. I believe that I left opportunities to maximize functionality on the table by collecting data in a simplified format. On the other side of that coin, I remind myself that the purpose of this project was not specifically database design but, rather, server-side JavaScript. I did manage to make the MVP for the project's idea, and was able to push a bit beyond that. Ultimately, this should be considered a success but perhaps the greatest takeaway is that no project is ever truly finished!
 
 
 ## Authors
@@ -82,6 +82,9 @@ This was my first foray into working with a database that I designed. Despite pu
 My inspriration to attempt this project comes from two well established resources in the internet wrestling community. For functionality that this project was not intended to provide, please visit the following sites:
  - [The Internet Wrestling Database](http://www.profightdb.com/)
  - [CAGEMATCH](https://www.cagematch.net/)
+
+Stock photography provided courtesy of: 
+ - [Martin Kníže, Carlos E. Ramirez, Larry Costales on Unsplash](https://unsplash.com/)
 
 
 ## Feedback
