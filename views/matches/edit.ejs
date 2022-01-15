@@ -1,0 +1,40 @@
+<%- include('./../partials/html-head') %>
+    <%- include('./../partials/nav') %>
+        <form class="field" action="/matches/<%= match._id %>?_method=PUT" method="POST">
+            <br>
+            <p class="subtitle">All Fields are Required</p>
+            <form class="field" action="/matches" method="POST">
+                <label class="label">Promotion: <br><small>*If you do not see the promotion you wish to add, please create it <a href="/promotions/new">here</a>before proceeding</small></label>
+                <select class="select" name="promotion" value="<% match.promotion %>">
+                    <% promotions.forEach(function(promotion) { %>
+                      <option><%= promotion.name %></option>
+                    <% }) %>
+                  </select>
+                <label class="label">Event Name</label>
+                <div class="control">
+                    <input class="input is-info is-rounded" type="text" name="event" value="<%=match.event%>">
+                </div>
+                <label class="label">Date</label>
+                <div class="control">
+                    <input class="input is-info is-rounded" type="datetime-local" name="date" value="<%=match.date%>">
+                </div>
+                <label class="label">Wrestlers</label>
+                <div class="control">
+                    <input class="input is-info is-rounded" type="textarea" name="wrestlers" value="<%=match.wrestlers%>">
+                </div>
+                <label class="label">Match Type</label>
+                <div class="control">
+                    <input class="input is-info is-rounded" type="text" name="matchType" value="<%=match.matchType%>">
+                </div>
+                <label class="label">Result</label>
+                <div class="control">
+                    <input class="input is-info is-rounded" type="text" name="result" value="<%=match.result%>">
+                </div>
+                <br>
+                <div class="control">
+                    <input class="button is-link is-outlined is-rounded" type="submit" value="Update Match">
+                </div>
+            </form>
+            <br>
+            <br>
+            <%- include('../partials/footer') %>

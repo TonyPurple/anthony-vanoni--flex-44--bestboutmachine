@@ -27,6 +27,24 @@ function show(req, res) {
         })
 }
 
+function show(req, res) {
+    Match.findById(req.params.id)
+        .populate('nominatedBy')
+        .populate('bestBoutedBy')
+        .then((match) => {
+            //find profile for current logged in user
+            Profile.findById(req.user.profile.id)
+                .then(profile => {
+                    res.render('matches/show', { title: 'Match Details', match, profile });
+                })
+                .catch(err => {
+                    console.log(err)
+                    res.redirect('/matches/index')
+                })
+        })
+}
+
+
 
 function newMatch(req, res) {
     Match.find({}).sort({ wrestlers: 'ascending' })
@@ -87,11 +105,38 @@ function bestBout(req, res) {
         })
 }
 
+function edit(req, res) {
+    Match.findById(req.params.id)
+        .then(match => {
+            Promotion.find({}).sort({ name: 'ascending' })
+                .then(promotions => {
+                    res.render('matches/edit', { title: 'Edit Match', match, promotions })
+                })
+        })
+}
+
+function update(req, res) {
+    Match.findByIdAndUpdate(req.params.id)
+        .then(match => {
+            if (req.body === '') return res.redirect(`/matches/${match._id}`)
+            else
+                match.update(req.body)
+                .then(() => {
+                    res.redirect(`/matches/${match._id}`)
+                })
+                .catch(err => {
+                    console.log(err)
+                    res.redirect(`/matches/${match._id}`)
+                })
+        })
+}
 module.exports = {
     index,
     show,
     new: newMatch,
     create,
     delete: deleteMatch,
-    bestBout
+    bestBout,
+    edit,
+    update
 };
