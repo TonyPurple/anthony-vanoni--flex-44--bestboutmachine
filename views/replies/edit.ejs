@@ -1,0 +1,12 @@
+<%- include('./../partials/html-head') %>
+    <%- include('./../partials/nav') %>
+
+        <form class="field" action="/replies/<%= replies._id %>?_method=PUT" method="POST">
+            <label class="label">Edit Reply: (required)</label>
+            <textarea class="textarea is-info is-large" name="content" placeholder="<%= replies.content %>"></textarea>
+            <br>
+            <br>
+            <button class="button is-link is-rounded" type="submit">Update Reply</button>
+        </form>
+
+        <%- include('../partials/footer') %>

@@ -57,7 +57,11 @@
                                         </p>
                                         <%= reply.createdAt.toLocaleDateString() %>
                                             <%= reply.createdAt.toLocaleTimeString() %>
+                                                <br>
+                                                <br>
                                                 <% if (user.profile._id.toString() == reply.repliedBy._id) { %>
+                                                    <a class="button is-warning is-rounded" href="/replies/<%= reply.id %>/edit">Edit Reply</a>
+                                                    <br>
                                                     <br>
                                                     <form action="/<%= post._id %>/replies/<%= reply._id %>?_method=DELETE" method="POST">
                                                         <button class="delete is-large"></button>

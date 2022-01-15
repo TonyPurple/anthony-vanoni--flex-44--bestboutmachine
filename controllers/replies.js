@@ -26,16 +26,33 @@ function deleteReply(req, res) {
         const replyDoc = post.replies.id(req.params.id);
         replyDoc.remove({ _id: req.params.id })
         post.save(function(err) {
-                // Redirect back to the post's show view
-                res.redirect(`/posts/${post._id}`);
-            })
-            .catch(e => {
-                console.log(e)
-            })
+            // Redirect back to the post's show view
+            res.redirect(`/posts/${post._id}`);
+        })
+    })
+}
+
+function edit(req, res) {
+    Post.findOne({ 'replies._id': req.params.id }, function(err, post) {
+        const replies = post.replies.id(req.params.id);
+        res.render('replies/edit', { title: 'Edit Reply', replies })
+    })
+}
+
+
+function update(req, res) {
+    Post.findOne({ 'replies._id': req.params.id }, function(err, post) {
+        const replyUpdate = post.replies.id(req.params.id);
+        replyUpdate.content = req.body.content;
+        post.save(function(err) {
+            res.redirect(`/posts/${post._id}`);
+        })
     })
 }
 
 module.exports = {
     reply,
-    deleteReply
+    deleteReply,
+    edit,
+    update
 };
