@@ -1,4 +1,4 @@
-var Post = require('../models/post');
+const Post = require('../models/post');
 const Profile = require('../models/profile');
 
 function reply(req, res) {

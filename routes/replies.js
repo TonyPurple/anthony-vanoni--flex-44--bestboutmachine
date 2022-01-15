@@ -1,5 +1,5 @@
-var router = require('express').Router();
-var repliesCtrl = require('../controllers/replies');
+const router = require('express').Router();
+const repliesCtrl = require('../controllers/replies');
 
 // reply to a post
 router.post('/posts/:id/replies', isLoggedIn, repliesCtrl.reply)

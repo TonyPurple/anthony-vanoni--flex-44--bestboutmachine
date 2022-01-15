@@ -1,4 +1,4 @@
-var Match = require('../models/match');
+const Match = require('../models/match');
 const Profile = require('../models/profile');
 
 function create(req, res) {

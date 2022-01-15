@@ -1,5 +1,5 @@
-var router = require('express').Router();
-var profilesCtrl = require('../controllers/profiles');
+const router = require('express').Router();
+const profilesCtrl = require('../controllers/profiles');
 
 //show all users
 router.get('/', isLoggedIn, profilesCtrl.index);

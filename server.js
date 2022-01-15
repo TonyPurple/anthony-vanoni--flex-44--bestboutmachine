@@ -1,26 +1,26 @@
 require('dotenv').config();
-var express = require('express');
-var path = require('path');
-var createError = require('http-errors');
-var session = require('express-session');
-var logger = require('morgan');
-var passport = require('passport')
-var methodOverride = require('method-override');
+const express = require('express');
+const path = require('path');
+const createError = require('http-errors');
+const session = require('express-session');
+const logger = require('morgan');
+const passport = require('passport')
+const methodOverride = require('method-override');
 
-var app = express();
+const app = express();
 
 require('./config/database');
 
 require('./config/passport');
 
-var indexRouter = require('./routes/index');
-var authRouter = require('./routes/auth');
-var matchesRouter = require('./routes/matches');
-var reviewsRouter = require('./routes/reviews');
-var promotionsRouter = require('./routes/promotions')
-var profilesRouter = require('./routes/profiles')
-var postsRouter = require('./routes/posts')
-var repliesRouter = require('./routes/replies')
+const indexRouter = require('./routes/index');
+const authRouter = require('./routes/auth');
+const matchesRouter = require('./routes/matches');
+const reviewsRouter = require('./routes/reviews');
+const promotionsRouter = require('./routes/promotions')
+const profilesRouter = require('./routes/profiles')
+const postsRouter = require('./routes/posts')
+const repliesRouter = require('./routes/replies')
 
 
 // view engine setup

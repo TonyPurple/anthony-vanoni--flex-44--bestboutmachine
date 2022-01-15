@@ -1,5 +1,5 @@
-var router = require('express').Router();
-var matchesCtrl = require('../controllers/matches');
+const router = require('express').Router();
+const matchesCtrl = require('../controllers/matches');
 
 //index all matches in database
 router.get('/', isLoggedIn, matchesCtrl.index);

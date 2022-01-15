@@ -1,5 +1,5 @@
-var router = require('express').Router();
-var reviewsCtrl = require('../controllers/reviews');
+const router = require('express').Router();
+const reviewsCtrl = require('../controllers/reviews');
 
 // handle new review form being submitted
 router.post('/matches/:id/reviews', isLoggedIn, reviewsCtrl.create);

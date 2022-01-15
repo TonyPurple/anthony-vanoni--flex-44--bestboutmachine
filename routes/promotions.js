@@ -1,4 +1,4 @@
-var router = require('express').Router();
+const router = require('express').Router();
 const promotionsCtrl = require('../controllers/promotions');
 
 router.get('/promotions/new', isLoggedIn, promotionsCtrl.new);

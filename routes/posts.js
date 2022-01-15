@@ -1,5 +1,5 @@
-var router = require('express').Router();
-var postsCtrl = require('../controllers/posts');
+const router = require('express').Router();
+const postsCtrl = require('../controllers/posts');
 
 //index all posts in database
 router.get('/', isLoggedIn, postsCtrl.index)

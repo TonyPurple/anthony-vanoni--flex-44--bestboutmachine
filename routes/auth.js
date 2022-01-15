@@ -1,4 +1,4 @@
-var router = require('express').Router();
+const router = require('express').Router();
 const passport = require('passport');
 
 // Google OAuth login route
