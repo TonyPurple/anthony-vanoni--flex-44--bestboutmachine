@@ -12,7 +12,8 @@ function create(req, res) {
 }
 
 function newPromotion(req, res) {
-    Promotion.find({}, function(err, promotions) {
+    Promotion.find({}).sort({ name: 'ascending' })
+        .then(promotions => {
             res.render('promotions/new', {
                 title: 'Add Promotion',
                 promotions
@@ -22,6 +23,7 @@ function newPromotion(req, res) {
             console.log(e)
         })
 }
+
 
 function index(req, res) {
     Promotion.find({})
