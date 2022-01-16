@@ -27,7 +27,7 @@ function newPromotion(req, res) {
 
 function index(req, res) {
     Promotion.find({})
-        .sort({ country: 'ascending' })
+        .sort({ country: 1, name: 1 })
         .then(promotions => {
             res.render("promotions/index", {
                 title: "Top Promotions",
