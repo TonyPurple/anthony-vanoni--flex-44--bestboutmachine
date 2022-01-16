@@ -12,7 +12,8 @@ function create(req, res) {
 }
 
 function newPromotion(req, res) {
-    Promotion.find({}, function(err, promotions) {
+    Promotion.find({}).sort({ name: 'ascending' })
+        .then(promotions => {
             res.render('promotions/new', {
                 title: 'Add Promotion',
                 promotions
@@ -23,9 +24,10 @@ function newPromotion(req, res) {
         })
 }
 
+
 function index(req, res) {
     Promotion.find({})
-        .sort({ country: 'ascending' })
+        .sort({ country: 1, name: 1 })
         .then(promotions => {
             res.render("promotions/index", {
                 title: "Top Promotions",
