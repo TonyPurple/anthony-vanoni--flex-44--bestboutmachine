@@ -51,10 +51,14 @@ function newMatch(req, res) {
         .then(matches => {
             Promotion.find({}).sort({ name: 'ascending' })
                 .then(promotions => {
+                    const newMatch = new Match();
+                    const dt = newMatch.date;
+                    const boutDate = dt.toISOString().slice(0, 16);
                     res.render('matches/new', {
                         title: 'Nominate a Match',
                         matches,
-                        promotions
+                        promotions,
+                        boutDate
                     });
                 })
         })
@@ -110,7 +114,9 @@ function edit(req, res) {
         .then(match => {
             Promotion.find({}).sort({ name: 'ascending' })
                 .then(promotions => {
-                    res.render('matches/edit', { title: 'Edit Match', match, promotions })
+                    const dt = match.date
+                    const boutDate = dt.toISOString().slice(0, 16)
+                    res.render('matches/edit', { title: 'Edit Match', match, promotions, boutDate })
                 })
         })
 }

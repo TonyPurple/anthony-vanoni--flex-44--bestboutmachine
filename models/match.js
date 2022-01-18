@@ -10,6 +10,14 @@ const reviewSchema = new Schema({
     timestamps: true
 });
 
+//declare current date variable to manipulate for default date
+let curDate = new Date().toLocaleDateString(undefined, {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+});
+// let curDate = new Date(new Date().setHours(0, 0, 0, 0))
+
 const matchSchema = new mongoose.Schema({
     promotion: { type: String, required: true },
     event: {
@@ -18,7 +26,8 @@ const matchSchema = new mongoose.Schema({
     },
     date: {
         type: Date,
-        required: true
+        required: true,
+        default: curDate
     },
     wrestlers: { type: String, required: true },
     matchType: {
