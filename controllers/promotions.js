@@ -47,7 +47,7 @@ function show(req, res) {
         .then(promotion =>
             Match.find({}).where('promotion').in(promotion.name)
             .then(matches => {
-                res.render('promotions/show', { title: 'Promotion Details', promotion, matches });
+                res.render('promotions/show', { title: `${promotion.name}'s Details`, promotion, matches });
             })
         )
         .catch(e => {

@@ -1,9 +1,14 @@
 <%- include('./../partials/html-head') %>
     <%- include('./../partials/nav') %>
-        <div class="message-header">Nominated Matches:</div>
-        <br>
         <a href="/matches/new" class="button is-link is-rounded">Nominate a Match</a>
         <br><br>
+        <div class="message-header">Home Country:</div>
+        <br>
+        <li class="title is-4">
+            <%=promotion.country%>
+        </li>
+        <div class="message-header">Nominated Matches:</div>
+        <br>
         <%- matches.map(match => 
   `
                                                     <div class="card">
@@ -15,5 +20,7 @@
                                                             </div>
                                                             <br>`
       ).join('') %>
-
+            <br>
+            <div class="message-header">Roster:</div>
+            <br>
             <%- include('../partials/footer') %>
