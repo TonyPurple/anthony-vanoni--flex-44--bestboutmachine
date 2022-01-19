@@ -124,8 +124,9 @@ function edit(req, res) {
 function update(req, res) {
     Match.findByIdAndUpdate(req.params.id)
         .then(match => {
-            if (req.body.promotion === '') return res.redirect(`/matches/${match._id}`)
-            else
+            if (req.body.event == null || req.body.event == "", req.body.wrestlers == null || req.body.wrestlers == "", req.body.matchType == null || req.body.matchType == "", req.body.result == null || req.body.result == "") {
+                return res.redirect(`/matches/${match._id}`)
+            } else
                 match.update(req.body)
                 .then(() => {
                     res.redirect(`/matches/${match._id}`)
