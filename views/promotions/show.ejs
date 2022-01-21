@@ -21,6 +21,17 @@
                                                             <br>`
       ).join('') %>
             <br>
-            <div class="message-header">Roster:</div>
-            <br>
-            <%- include('../partials/footer') %>
+            <div class="message-header">Top Events:</div>
+            <%- matches.map(match => 
+            `
+                                                              <div class="card">
+                                                                  <div class="card-content">
+                                                                      <li class="title is-4 has-text-link">
+                                                                        <a href="/matches/${match._id}">${match.event} <small>${match.date.toLocaleDateString()}</small></a>
+                                                                      </li>
+                                                                      </div>
+                                                                      </div>
+                                                                      <br>`
+                ).join('') %>
+                <br>
+                <%- include('../partials/footer') %>
