@@ -20,8 +20,8 @@
                                                             </div>
                                                             <br>`
       ).join('') %>
-            <br>
             <div class="message-header">Top Events:</div>
+            <br>
             <%- matches.map(match => 
             `
                                                               <div class="card">
@@ -33,5 +33,4 @@
                                                                       </div>
                                                                       <br>`
                 ).join('') %>
-                <br>
                 <%- include('../partials/footer') %>
