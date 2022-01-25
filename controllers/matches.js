@@ -18,19 +18,6 @@ function show(req, res) {
     Match.findById(req.params.id)
         .populate('nominatedBy')
         .populate('bestBoutedBy')
-        .then(match => {
-            res.render('matches/show', { title: 'Match Details', match });
-        })
-        .catch(err => {
-            console.log(err)
-            res.redirect('/matches/index')
-        })
-}
-
-function show(req, res) {
-    Match.findById(req.params.id)
-        .populate('nominatedBy')
-        .populate('bestBoutedBy')
         .then((match) => {
             //find profile for current logged in user
             Profile.findById(req.user.profile.id)

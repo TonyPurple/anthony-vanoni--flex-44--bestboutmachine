@@ -1,5 +1,5 @@
 const Promotion = require('../models/promotion');
-const Match = require('../models/match')
+const Match = require('../models/match');
 
 function create(req, res) {
     Promotion.create(req.body)
