@@ -17,7 +17,9 @@ const promotionSchema = new mongoose.Schema({
     },
     roster: [{
         type: String,
-    }]
+    }],
+    addedBy: { type: Schema.Types.ObjectId, ref: "Profile" },
+    userName: String,
 }, {
     timestamps: true
 })

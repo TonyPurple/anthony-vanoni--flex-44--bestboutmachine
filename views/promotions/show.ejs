@@ -33,4 +33,11 @@
                                                                       </div>
                                                                       <br>`
                 ).join('') %>
-                <%- include('../partials/footer') %>
+                <br>
+                <br>
+                <% if (user.profile._id.toString() == promotion.addedBy._id) { %>
+                    <a class="button is-warning is-rounded" href="/<%= promotion._id %>/edit">Edit Promotion</a>
+                    <br>
+                    <br>
+                    <% } %>
+                        <%- include('../partials/footer') %>
