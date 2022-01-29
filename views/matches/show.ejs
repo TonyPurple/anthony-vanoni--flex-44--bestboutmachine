@@ -31,17 +31,29 @@
                     <h2 class="subtitle has-background-white">
                         <%= match.userName %>
                     </h2>
-                    <br>
-                    <a href="/matches/<%= match._id %>/profiles">
-                        <input class="button is-dark is-rounded" type="submit" value="Add To Best Bout List">
-                    </a>
-                    <br>
-                    <br>
-                    <% if (user.profile._id.toString() == match.nominatedBy._id) { %>
-                        <a class="button is-warning is-rounded" href="/matches/<%= match._id %>/edit">Edit Match</a>
-                        <br>
-                        <br>
-                        <% } %>
+                    <% if (bestBoutedBy.length) { %>
+                        <h1 class="title">Best Bouted By: </h1>
+                        <p class="subtitle has-background-white">
+                            <%- bestBoutedBy.map(profile => 
+                        `${profile.name}`
+                            ).join(', ') %>
+                        </p>
+                        <% } else { %>
+                            <div class="message-body has-background-danger-light">Not Best Bouted Yet</div>
+                            <% } %>
+                                <br>
+                                <% if(!profile.boutList?.includes(match._id)) { %>
+                                    <a href="/matches/<%= match._id %>/profiles">
+                                        <input class="button is-dark is-rounded" type="submit" value="Add To Best Bout List">
+                                    </a>
+                                    <% } %>
+                                        <br>
+                                        <br>
+                                        <% if (user.profile._id.toString() == match.nominatedBy._id) { %>
+                                            <a class="button is-warning is-rounded" href="/matches/<%= match._id %>/edit">Edit Match</a>
+                                            <br>
+                                            <br>
+                                            <% } %>
                 </section>
             </div>
             <section class="section has-background-warning">

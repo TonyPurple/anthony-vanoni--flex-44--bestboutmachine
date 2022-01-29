@@ -22,7 +22,7 @@ function show(req, res) {
             //find profile for current logged in user
             Profile.findById(req.user.profile.id)
                 .then(profile => {
-                    res.render('matches/show', { title: 'Match Details', match, profile });
+                    res.render('matches/show', { title: 'Match Details', match, profile, bestBoutedBy: match.bestBoutedBy });
                 })
                 .catch(err => {
                     console.log(err)
@@ -79,20 +79,25 @@ function deleteMatch(req, res) {
 
 
 function bestBout(req, res) {
-    req.body.bestBoutedBy = req.user.profile._id
-        // find profile we want to add match to
+    // req.body.bestBoutedBy = req.user.profile._id
+    // find profile we want to add match to
     Profile.findById(req.user.profile._id)
         .then(profile => {
             // push the match obj id to that profile
             profile.boutList.push(req.params.id)
-                // save 
-            profile.save()
-                // redirect to profile/show view
-            res.redirect(`/profiles/${profile._id}`)
-        })
-        .catch(err => {
-            console.log(err)
-            res.redirect(`/matches/${match._id}`)
+            Match.findById(req.params.id)
+                .then(match => {
+                    match.bestBoutedBy.push(req.user.profile._id)
+                    match.save()
+                        // save 
+                    profile.save()
+                        // redirect to profile/show view
+                    res.redirect(`/profiles/${profile._id}`)
+                })
+                .catch(err => {
+                    console.log(err)
+                    res.redirect(`/matches/${match._id}`)
+                })
         })
 }
 
