@@ -53,7 +53,7 @@ Main Mongoose Model
 ![App Screenshot](https://i.imgur.com/RTMQ3Sq.png)
 
 Main Controller
-![App Screenshot](https://i.imgur.com/K6fbWAp.png)
+![App Screenshot](https://i.imgur.com/nx2liyt.png)
 
 
 ## Icebox
