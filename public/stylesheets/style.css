@@ -3,6 +3,16 @@ body {
 }
 
 a {
-    margin: 3px;
-    padding: 3px;
+    margin: 1px;
+    padding: 1px;
+}
+
+button {
+    margin: 5px;
+    padding: 1px;
+}
+
+#greeting {
+    margin: 1px;
+    padding: 5px;
 }
