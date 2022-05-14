@@ -93,7 +93,7 @@ If you have any feedback, please reach out at tony.vanoni@outlook.com
 
 
 ## 🚀 About Me
-I've been somewhere in the middle of creative and technical my whole life. Software development has proven to be the outlet for both that I was always looking for. I am currently participating in a remote flex immersive through General Assembly, where I am gaining skills and experience in full-stack development.
+I've been somewhere in the middle of creative and technical my whole life. Software development has proven to be the outlet for both that I was always looking for. This was my unit 2 project for the remote flex software engineering immersive through General Assembly, where I am graduated with skills and experience in full-stack development in April 2022.
 
 
 
